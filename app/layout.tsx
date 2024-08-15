@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import StyledComponentsRegistry from './_lib/registry'
+import StyledComponentsRegistry from '@/lib/registry'
+import { StoreProvider } from '@/lib/store/provider'
 import { Inter } from 'next/font/google'
 import 'normalize.css/normalize.css'
 import './globals.css'
@@ -22,7 +23,9 @@ export default function RootLayout({
         <link rel="icon" href="/images/favicon.ico" />
       </head>
       <body className={inter.className}>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <StoreProvider>{children}</StoreProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   )

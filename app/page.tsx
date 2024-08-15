@@ -1,6 +1,7 @@
 'use client'
 
 import Table from '@/components/table'
+import { HomePage } from './_components/home-page'
 
 // 示例数据
 const dataSource = [
@@ -39,10 +40,15 @@ const columns = [
 
 const Home: React.FC = () => {
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Custom Table with External Data</h1>
-      <Table dataSource={dataSource} columns={columns} />
-    </div>
+    <>
+      <div style={{ padding: '20px' }}>
+        <HomePage />
+      </div>
+      <div style={{ padding: '20px' }}>
+        <h1>Custom Table with External Data</h1>
+        <Table dataSource={dataSource} columns={columns} />
+      </div>
+    </>
   )
 }
 
