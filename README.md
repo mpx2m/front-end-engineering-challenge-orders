@@ -6,4 +6,4 @@
 
 ## Technical Stack
 
-- [Next.js](https://nextjs.org/) ｜ [styled-components](https://styled-components.com/)｜ [Zustand](https://zustand-demo.pmnd.rs/)
+- [Next.js](https://nextjs.org/) ｜ [styled-components](https://styled-components.com/)｜ [Zustand](https://zustand-demo.pmnd.rs/)｜ [Socket.IO](https://socket.io/)
