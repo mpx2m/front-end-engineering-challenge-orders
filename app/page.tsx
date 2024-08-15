@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import Table from '@/components/table'
 import { HomePage } from './_components/home-page'
 
@@ -41,6 +42,9 @@ const columns = [
 const Home: React.FC = () => {
   return (
     <>
+      <div style={{ padding: '20px' }}>
+        <Link href="/dashboard">Dashboard</Link>
+      </div>
       <div style={{ padding: '20px' }}>
         <HomePage />
       </div>
