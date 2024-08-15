@@ -7,9 +7,7 @@ import { StoreInterface, initializeStore, initStore } from './store'
 
 export type StoreApi = ReturnType<typeof initializeStore>
 
-export const CounterStoreContext = createContext<StoreApi | undefined>(
-  undefined
-)
+export const StoreContext = createContext<StoreApi | undefined>(undefined)
 
 export interface StoreProviderProps {
   children: ReactNode
@@ -22,18 +20,18 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
   }
 
   return (
-    <CounterStoreContext.Provider value={storeRef.current}>
+    <StoreContext.Provider value={storeRef.current}>
       {children}
-    </CounterStoreContext.Provider>
+    </StoreContext.Provider>
   )
 }
 
 export const useAppStore = <T,>(selector: (store: StoreInterface) => T): T => {
-  const counterStoreContext = useContext(CounterStoreContext)
+  const storeContext = useContext(StoreContext)
 
-  if (!counterStoreContext) {
+  if (!storeContext) {
     throw new Error(`useAppStore must be used within StoreProvider`)
   }
 
-  return useStore(counterStoreContext, selector)
+  return useStore(storeContext, selector)
 }
