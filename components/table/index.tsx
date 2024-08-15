@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TableProps } from './table.props'
+import { TableProps } from './props'
 
 const TableWrapper = styled.div`
   max-width: 100%;
