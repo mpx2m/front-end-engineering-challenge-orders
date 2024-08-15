@@ -1,24 +1,49 @@
 'use client'
 
-import styled from 'styled-components'
-// Create a Title component that'll render an <h1> tag with some styles
-const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: #bf4f74;
-`
+import Table from '@/components/table/table.component'
 
-// Create a Wrapper component that'll render a <section> tag with some styles
-const Wrapper = styled.section`
-  padding: 4em;
-  background: papayawhip;
-`
+// 示例数据
+const dataSource = [
+  {
+    key: '1',
+    name: 'John Brown',
+    age: 32,
+    address: 'New York No. 1 Lake Park'
+  },
+  {
+    key: '2',
+    name: 'Jim Green',
+    age: 42,
+    address: 'London No. 1 Lake Park'
+  }
+]
 
-// Use Title and Wrapper like any other React component – except they're styled!
-export default function Home() {
+// 示例列定义
+const columns = [
+  {
+    title: 'Name',
+    key: 'name',
+    dataIndex: 'name'
+  },
+  {
+    title: 'Age',
+    key: 'age',
+    dataIndex: 'age'
+  },
+  {
+    title: 'Address',
+    key: 'address',
+    dataIndex: 'address'
+  }
+]
+
+const Home: React.FC = () => {
   return (
-    <Wrapper>
-      <Title>Hello World!</Title>
-    </Wrapper>
+    <div style={{ padding: '20px' }}>
+      <h1>Custom Table with External Data</h1>
+      <Table dataSource={dataSource} columns={columns} />
+    </div>
   )
 }
+
+export default Home
