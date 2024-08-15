@@ -43,7 +43,7 @@ const Home: React.FC = () => {
   return (
     <>
       <div style={{ padding: '20px' }}>
-        <Link href="/dashboard">Dashboard</Link>
+        <Link href="/demo-page">Dashboard</Link>
       </div>
       <div style={{ padding: '20px' }}>
         <HomePage />
