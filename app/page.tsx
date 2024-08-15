@@ -1,6 +1,6 @@
 'use client'
 
-import Table from '@/components/table/table.component'
+import Table from '@/components/table'
 
 // 示例数据
 const dataSource = [

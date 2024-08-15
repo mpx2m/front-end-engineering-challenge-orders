@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import StyledComponentsRegistry from '../lib/registry'
+import StyledComponentsRegistry from '@/lib/styled-components-registry'
 import { Inter } from 'next/font/google'
 import 'normalize.css/normalize.css'
 import './globals.css'
