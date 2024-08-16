@@ -5,6 +5,7 @@ interface ButtonProps {
   backgroundColor?: string
   hoverBackgroundColor?: string
   color?: string
+  borderColor?: string
 }
 
 const BaseButton = styled.button<ButtonProps>`
@@ -16,6 +17,7 @@ const BaseButton = styled.button<ButtonProps>`
   background-color: ${props => props.backgroundColor || theme.primary};
   color: ${props => props.color || theme.textColorWhite};
   cursor: pointer;
+  border: 1px solid ${props => props.borderColor || 'transparent'};
 
   &:hover {
     background-color: ${props =>
