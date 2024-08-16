@@ -12,6 +12,7 @@ export const Grid = styled.div`
   background: ${theme.backgroundColor400};
   color: ${theme.textColor100};
   min-height: 100vh;
+  overflow: auto;
 `
 
 export const Sider = styled.div`

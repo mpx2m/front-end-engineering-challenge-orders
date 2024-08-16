@@ -3,76 +3,8 @@
 import { useEffect, useState } from 'react'
 import Table from '@/components/table'
 import { socket, OrderEvent } from '@/lib/socket'
-
-// 示例数据
-const dataSource = [
-  {
-    customer: 'Carla Garner',
-    destination: '61109 Alan Motorway, North Corey, CA 92789',
-    event_name: 'CREATED',
-    id: 'd0791ce11',
-    item: 'Caesar salad',
-    price: 4692,
-    sent_at_second: 6
-  },
-  {
-    customer: 'Carla Garner',
-    destination: '61109 Alan Motorway, North Corey, CA 92789',
-    event_name: 'COOKED',
-    id: 'd0791ce12',
-    item: 'Caesar salad',
-    price: 4692,
-    sent_at_second: 13
-  },
-  {
-    customer: 'Carla Garner',
-    destination: '61109 Alan Motorway, North Corey, CA 92789',
-    event_name: 'DRIVER_RECEIVED',
-    id: 'd0791ce13',
-    item: 'Caesar salad',
-    price: 4692,
-    sent_at_second: 18
-  }
-]
-
-// 示例列定义
-const columns = [
-  {
-    title: 'Id',
-    key: 'id',
-    dataIndex: 'id'
-  },
-  {
-    title: 'Customer',
-    key: 'customer',
-    dataIndex: 'customer'
-  },
-  {
-    title: 'Destination',
-    key: 'destination',
-    dataIndex: 'destination'
-  },
-  {
-    title: 'Event name',
-    key: 'event_name',
-    dataIndex: 'event_name'
-  },
-  {
-    title: 'Item',
-    key: 'item',
-    dataIndex: 'item'
-  },
-  {
-    title: 'Price',
-    key: 'price',
-    dataIndex: 'price'
-  },
-  {
-    title: 'Sent at second',
-    key: 'sent_at_second',
-    dataIndex: 'sent_at_second'
-  }
-]
+import { dataSource } from '../_data/dataSource'
+import { columns } from '../_data/columns'
 
 const Home: React.FC = () => {
   const [isConnected, setIsConnected] = useState(false)
