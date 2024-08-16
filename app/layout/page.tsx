@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import styled from 'styled-components'
 
-const colors = {
+const theme = {
   backgroundColor100: 'rgb(255, 254, 246)',
   backgroundColor200: 'rgb(248, 246, 236)',
   backgroundColor300: 'rgb(242, 240, 228)',
@@ -24,26 +24,26 @@ const Grid = styled.div`
     'sider footer';
   grid-template-columns: 200px 1fr;
   grid-template-rows: 64px 1fr auto;
-  background: ${colors.backgroundColor400};
-  color: ${colors.textColor100};
+  background: ${theme.backgroundColor400};
+  color: ${theme.textColor100};
 `
 
 const Sider = styled.div`
   grid-area: sider;
-  background: ${colors.primary};
-  color: ${colors.textColorWhite};
+  background: ${theme.primary};
+  color: ${theme.textColorWhite};
   padding-top: 64px;
 `
 
 const Header = styled.div`
   grid-area: header;
-  background: ${colors.backgroundColor100};
+  background: ${theme.backgroundColor100};
 `
 
 const Content = styled.div`
   grid-area: content;
   margin: 24px 16px;
-  background: ${colors.backgroundColor100};
+  background: ${theme.backgroundColor100};
 `
 
 const Footer = styled.div`
@@ -51,23 +51,23 @@ const Footer = styled.div`
   font-size: 12px;
   text-align: center;
   margin-bottom: 16px;
-  color: ${colors.textColor200};
+  color: ${theme.textColor200};
 `
 
 const MenuItem = styled.div`
   padding: 16px;
-  color: ${colors.textColorWhite};
+  color: ${theme.textColorWhite};
   cursor: pointer;
 
   &:hover {
-    background-color: ${colors.highlight};
+    background-color: ${theme.highlight};
   }
 `
 
 const Logo = styled.div`
   margin-left: 16px;
   width: 160px;
-  height: 80px;
+  height: 70px;
   position: relative;
 `
 
@@ -92,8 +92,8 @@ const AvatarBody = styled.span<{ color?: string }>`
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: ${({ color }) => color || colors.primary};
-  color: ${colors.textColorWhite};
+  background: ${({ color }) => color || theme.primary};
+  color: ${theme.textColorWhite};
   margin-right: 8px;
   font-size: 16px;
   text-align: center;
