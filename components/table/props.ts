@@ -1,15 +1,15 @@
-interface Column {
+export interface Column {
   title: string
   key: string
   dataIndex: string
 }
 
-interface DataItem {
-  key: string
+export interface DataItem {
   [key: string]: any
 }
 
 export interface TableProps {
   dataSource: DataItem[]
   columns: Column[]
+  rowKey?: string | ((record: DataItem) => string)
 }

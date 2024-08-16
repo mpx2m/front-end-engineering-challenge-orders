@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TableProps } from './props'
+import { TableProps, DataItem } from './props'
 
 const TableWrapper = styled.div`
   max-width: 100%;
@@ -48,27 +48,39 @@ const Td = styled.td`
   border-bottom: 1px solid #dee2e6;
 `
 
-const Table: React.FC<TableProps> = ({ dataSource, columns }) => (
-  <TableWrapper>
-    <T>
-      <Thead>
-        <Tr>
-          {columns.map(col => (
-            <Th key={col.key}>{col.title}</Th>
-          ))}
-        </Tr>
-      </Thead>
-      <Tbody>
-        {dataSource.map(data => (
-          <Tr key={data.key}>
+const Table: React.FC<TableProps> = ({ dataSource, columns, rowKey }) => {
+  const getRowKey = (record: DataItem) => {
+    if (typeof rowKey === 'function') {
+      return rowKey(record)
+    } else if (typeof rowKey === 'string') {
+      return record[rowKey]
+    } else {
+      return record.key
+    }
+  }
+
+  return (
+    <TableWrapper>
+      <T>
+        <Thead>
+          <Tr>
             {columns.map(col => (
-              <Td key={col.key}>{data[col.dataIndex]}</Td>
+              <Th key={col.key}>{col.title}</Th>
             ))}
           </Tr>
-        ))}
-      </Tbody>
-    </T>
-  </TableWrapper>
-)
+        </Thead>
+        <Tbody>
+          {dataSource.map(data => (
+            <Tr key={getRowKey(data)}>
+              {columns.map(col => (
+                <Td key={col.key}>{data[col.dataIndex]}</Td>
+              ))}
+            </Tr>
+          ))}
+        </Tbody>
+      </T>
+    </TableWrapper>
+  )
+}
 
 export default Table
