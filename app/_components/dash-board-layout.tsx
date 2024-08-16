@@ -18,7 +18,6 @@ const DashBoardLayout: React.FC<DashBoardLayoutProps> = ({ children }) => {
 
   const menuItems = [
     { href: '/', label: 'Order' },
-    { href: '/analytics', label: 'Analytics' },
     { href: '/restaurants', label: 'Restaurants' },
     { href: '/chef', label: 'Chef' }
   ]
