@@ -1,7 +1,9 @@
 'use client'
 
-const App: React.FC = () => {
-  return <>chef</>
+import BlankPage from '../_components/blank-page'
+
+const Page: React.FC = () => {
+  return <BlankPage />
 }
 
-export default App
+export default Page

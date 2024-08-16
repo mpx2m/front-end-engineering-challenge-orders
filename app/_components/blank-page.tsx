@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Image from 'next/image'
 import { theme } from '@/components/theme'
 import Button from '@/components/button'
 import { useRouter } from 'next/navigation'
@@ -32,6 +31,12 @@ const LoremIpsum = styled.section`
 
 const ImageSection = styled.div`
   grid-area: image;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/blank-page.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 `
 
 const BlankPage: React.FC = () => {
@@ -48,23 +53,15 @@ const BlankPage: React.FC = () => {
         <Button
           onClick={() => router.push('/')}
           style={{ marginTop: 45 }}
-          borderColor={theme.textGray100}
           color={theme.textGray300}
-          backgroundColor={theme.backgroundColor100}
-          hoverBackgroundColor={theme.backgroundColor200}
+          $backgroundColor={theme.backgroundColor100}
+          $hoverBackgroundColor={theme.backgroundColor200}
+          $borderColor={theme.textGray100}
         >
           Back to Order
         </Button>
       </TextSection>
-      <ImageSection>
-        <Image
-          src="/images/blank-page.png"
-          alt="Blank Page"
-          width={480}
-          height={297}
-          priority
-        />
-      </ImageSection>
+      <ImageSection />
     </Container>
   )
 }

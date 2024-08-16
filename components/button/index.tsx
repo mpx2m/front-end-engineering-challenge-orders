@@ -2,10 +2,10 @@ import styled from 'styled-components'
 import { theme } from '@/components/theme'
 
 interface ButtonProps {
-  backgroundColor?: string
-  hoverBackgroundColor?: string
+  $backgroundColor?: string
+  $hoverBackgroundColor?: string
+  $borderColor?: string
   color?: string
-  borderColor?: string
 }
 
 const BaseButton = styled.button<ButtonProps>`
@@ -14,14 +14,14 @@ const BaseButton = styled.button<ButtonProps>`
   line-height: 1.5;
   border-radius: 50px;
   transition: background-color 0.15s ease-in-out;
-  background-color: ${props => props.backgroundColor || theme.primary};
+  background-color: ${props => props.$backgroundColor || theme.primary};
   color: ${props => props.color || theme.textColorWhite};
   cursor: pointer;
-  border: 1px solid ${props => props.borderColor || 'transparent'};
+  border: 1px solid ${props => props.$borderColor || 'transparent'};
 
   &:hover {
     background-color: ${props =>
-      props.hoverBackgroundColor || theme.hoverButton};
+      props.$hoverBackgroundColor || theme.hoverButton};
   }
 `
 
