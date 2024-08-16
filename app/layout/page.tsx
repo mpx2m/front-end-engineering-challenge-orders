@@ -35,7 +35,7 @@ const Sider = styled.div`
 
 const Header = styled.div`
   grid-area: header;
-  background: ${colors.highlight};
+  background: ${colors.backgroundColor100};
 `
 
 const Content = styled.div`
