@@ -1,137 +1,182 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import styled from 'styled-components'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import Table from '@/components/table'
-import { HomePage } from './_components/home-page'
-import { socket, OrderEvent } from '@/lib/socket'
 
-// 示例数据
-const dataSource = [
-  {
-    customer: 'Carla Garner',
-    destination: '61109 Alan Motorway, North Corey, CA 92789',
-    event_name: 'CREATED',
-    id: 'd0791ce11',
-    item: 'Caesar salad',
-    price: 4692,
-    sent_at_second: 6
-  },
-  {
-    customer: 'Carla Garner',
-    destination: '61109 Alan Motorway, North Corey, CA 92789',
-    event_name: 'COOKED',
-    id: 'd0791ce12',
-    item: 'Caesar salad',
-    price: 4692,
-    sent_at_second: 13
-  },
-  {
-    customer: 'Carla Garner',
-    destination: '61109 Alan Motorway, North Corey, CA 92789',
-    event_name: 'DRIVER_RECEIVED',
-    id: 'd0791ce13',
-    item: 'Caesar salad',
-    price: 4692,
-    sent_at_second: 18
+const theme = {
+  backgroundColor100: 'rgb(255, 254, 246)',
+  backgroundColor200: 'rgb(248, 246, 236)',
+  backgroundColor300: 'rgb(242, 240, 228)',
+  backgroundColor400: 'rgb(228, 226, 213)',
+  textColorWhite: 'white',
+  textColor100: 'rgb(50, 48, 35)',
+  textColor200: 'rgb(128, 123, 103)',
+  primary: 'rgb(47, 63, 58)',
+  hoverButton: 'rgb(34, 45, 38)',
+  highlight: 'rgb(210, 111, 80)',
+  borderColor100: 'rgb(226, 226, 213)'
+}
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-areas:
+    'sider header'
+    'sider content'
+    'sider footer';
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 64px 1fr auto;
+  background: ${theme.backgroundColor400};
+  color: ${theme.textColor100};
+`
+
+const Sider = styled.div`
+  grid-area: sider;
+  background: ${theme.primary};
+  color: ${theme.textColorWhite};
+  padding-top: 64px;
+`
+
+const Header = styled.div`
+  grid-area: header;
+  background: ${theme.backgroundColor100};
+`
+
+const Content = styled.div`
+  grid-area: content;
+  margin: 24px 16px;
+  background: ${theme.backgroundColor100};
+`
+
+const Footer = styled.div`
+  grid-area: footer;
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 16px;
+  color: ${theme.textColor200};
+`
+
+const MenuItem = styled(Link)<{ active?: boolean }>`
+  text-decoration: none;
+  display: block;
+  padding: 16px;
+  color: ${theme.textColorWhite};
+  cursor: ${props => (props.active ? 'default' : 'pointer')};
+  background-color: ${props =>
+    props.active ? theme.highlight : 'transparent'};
+  &:hover {
+    background-color: ${props =>
+      props.active ? theme.highlight : theme.hoverButton};
   }
-]
+`
 
-// 示例列定义
-const columns = [
-  {
-    title: 'Id',
-    key: 'id',
-    dataIndex: 'id'
-  },
-  {
-    title: 'Customer',
-    key: 'customer',
-    dataIndex: 'customer'
-  },
-  {
-    title: 'Destination',
-    key: 'destination',
-    dataIndex: 'destination'
-  },
-  {
-    title: 'Event name',
-    key: 'event_name',
-    dataIndex: 'event_name'
-  },
-  {
-    title: 'Item',
-    key: 'item',
-    dataIndex: 'item'
-  },
-  {
-    title: 'Price',
-    key: 'price',
-    dataIndex: 'price'
-  },
-  {
-    title: 'Sent at second',
-    key: 'sent_at_second',
-    dataIndex: 'sent_at_second'
+const Logo = styled.div`
+  width: 160px;
+  margin-left: 16px;
+  margin-bottom: 16px;
+`
+
+const HeaderContent = styled.div`
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding-right: 6px;
+  height: 64px;
+`
+
+const AvatarContainer = styled.div`
+  padding: 6px 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
   }
-]
+`
 
-const Home: React.FC = () => {
-  const [isConnected, setIsConnected] = useState(false)
-  const [transport, setTransport] = useState('N/A')
+const AvatarBody = styled.span<{ color?: string }>`
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: ${({ color }) => color || theme.primary};
+  color: ${theme.textColorWhite};
+  margin-right: 8px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 34px;
+`
 
-  useEffect(() => {
-    const onConnect = () => {
-      setIsConnected(true)
-      setTransport(socket.io.engine.transport.name)
+const AvatarName = styled.span`
+  font-size: 14px;
+  height: 34px;
+  line-height: 34px;
+`
 
-      socket.io.engine.on('upgrade', transport => {
-        setTransport(transport.name)
-      })
-    }
+interface AvatarProps {
+  name: string
+  avatarColor?: string
+}
 
-    const onDisconnect = () => {
-      setIsConnected(false)
-      setTransport('N/A')
-    }
-
-    const onOrderEvent = (data: OrderEvent) => {
-      console.log('Received order event', data)
-    }
-
-    if (socket.connected) {
-      onConnect()
-    }
-
-    socket.on('connect', onConnect)
-    socket.on('disconnect', onDisconnect)
-    socket.on('order_event', onOrderEvent)
-
-    return () => {
-      socket.off('connect', onConnect)
-      socket.off('disconnect', onDisconnect)
-      socket.off('order_event', onOrderEvent)
-    }
-  }, [])
-
+const Avatar: React.FC<AvatarProps> = ({ name, avatarColor }) => {
   return (
-    <>
-      <section>
-        <p>Status: {isConnected ? 'connected' : 'disconnected'}</p>
-        <p>Transport: {transport}</p>
-      </section>
-      <section style={{ padding: '20px' }}>
-        <Link href="/demo-page">Dashboard</Link>
-      </section>
-      <section style={{ padding: '20px' }}>
-        <HomePage />
-      </section>
-      <section style={{ padding: '20px' }}>
-        <h1>Custom Table with External Data</h1>
-        <Table dataSource={dataSource} columns={columns} rowKey="id" />
-      </section>
-    </>
+    <AvatarContainer>
+      <AvatarBody color={avatarColor}>{name[0].toUpperCase()}</AvatarBody>
+      <AvatarName>{name}</AvatarName>
+    </AvatarContainer>
   )
 }
 
-export default Home
+const App: React.FC = () => {
+  const pathname = usePathname()
+
+  return (
+    <Grid>
+      <Sider>
+        <Logo>
+          <Image
+            src="/images/app-logo.png"
+            alt="Logo"
+            width={160}
+            height={31}
+          />
+        </Logo>
+        <MenuItem href="/" active={pathname === '/'}>
+          Home
+        </MenuItem>
+        <MenuItem href="/analytics" active={pathname === '/analytics'}>
+          Analytics
+        </MenuItem>
+        <MenuItem href="/restaurants" active={pathname === '/restaurants'}>
+          Restaurants
+        </MenuItem>
+        <MenuItem href="/chef" active={pathname === '/chef'}>
+          Chef
+        </MenuItem>
+      </Sider>
+      <Header>
+        <HeaderContent>
+          <Avatar name="admin" avatarColor="rgb(72, 160, 172)" />
+        </HeaderContent>
+      </Header>
+      <Content>
+        <div
+          style={{
+            padding: 24,
+            textAlign: 'center'
+          }}
+        >
+          <p>long content</p>
+          {Array.from({ length: 100 }, (_, index) => (
+            <div key={index}>
+              {index % 20 === 0 && index ? 'more' : '...'}
+              <br />
+            </div>
+          ))}
+        </div>
+      </Content>
+      <Footer>Fancy Food ©{new Date().getFullYear()} Created by Alan</Footer>
+    </Grid>
+  )
+}
+
+export default App
