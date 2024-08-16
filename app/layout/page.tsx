@@ -3,7 +3,19 @@
 import Image from 'next/image'
 import styled from 'styled-components'
 
-const Layout = styled.div`
+const colors = {
+  backgroundColor100: 'rgb(255, 254, 246)',
+  backgroundColor200: 'rgb(248, 246, 236)',
+  backgroundColor300: 'rgb(242, 240, 228)',
+  backgroundColor400: 'rgb(228, 226, 213)',
+  textColorWhite: 'white',
+  textColor100: '#807b67',
+  primary: 'rgb(47, 63, 58)',
+  highlight: 'rgb(210, 111, 80)',
+  borderColor100: 'rgb(226, 226, 213)'
+}
+
+const Grid = styled.div`
   display: grid;
   grid-template-areas:
     'sider header'
@@ -11,43 +23,42 @@ const Layout = styled.div`
     'sider footer';
   grid-template-columns: 200px 1fr;
   grid-template-rows: 64px 1fr;
+  background: ${colors.backgroundColor400};
 `
 
 const Sider = styled.div`
   grid-area: sider;
-  background: rgb(34, 45, 38);
-  color: #fff;
+  background: ${colors.primary};
+  color: #${colors.textColorWhite};
   padding-top: 64px;
 `
 
 const Header = styled.div`
   grid-area: header;
-  background: gray;
+  background: ${colors.highlight};
 `
 
 const Content = styled.div`
   grid-area: content;
-  padding: 24px 16px;
-  background: rgb(248, 246, 236);
+  margin: 24px 16px;
+  background: ${colors.backgroundColor100};
 `
 
 const Footer = styled.div`
   grid-area: footer;
   font-size: 10px;
-  text-align: right;
-  padding: 20px 14px;
-  border-top: 1px solid rgb(226, 226, 213);
-  background: rgb(248, 246, 236);
-  color: #807b67;
+  text-align: center;
+  margin-bottom: 16px;
+  color: ${colors.textColor100};
 `
 
 const MenuItem = styled.div`
   padding: 16px;
-  color: #fff;
+  color: ${colors.textColorWhite};
   cursor: pointer;
 
   &:hover {
-    background-color: rgb(209, 111, 79);
+    background-color: ${colors.highlight};
   }
 `
 
@@ -58,7 +69,7 @@ const Logo = styled.div`
 
 const App: React.FC = () => {
   return (
-    <Layout>
+    <Grid>
       <Sider>
         <Logo>
           <Image
@@ -72,10 +83,6 @@ const App: React.FC = () => {
         <MenuItem>Home</MenuItem>
         <MenuItem>Analytics</MenuItem>
         <MenuItem>Cloud</MenuItem>
-        <MenuItem>Shop</MenuItem>
-        <MenuItem>Team</MenuItem>
-        <MenuItem>Upload</MenuItem>
-        <MenuItem>Users</MenuItem>
         <MenuItem>Videos</MenuItem>
       </Sider>
       <Header />
@@ -83,8 +90,7 @@ const App: React.FC = () => {
         <div
           style={{
             padding: 24,
-            textAlign: 'center',
-            backgroundColor: 'gray'
+            textAlign: 'center'
           }}
         >
           <p>long content</p>
@@ -97,7 +103,7 @@ const App: React.FC = () => {
         </div>
       </Content>
       <Footer>Fancy Food ©{new Date().getFullYear()} Created by Alan</Footer>
-    </Layout>
+    </Grid>
   )
 }
 
