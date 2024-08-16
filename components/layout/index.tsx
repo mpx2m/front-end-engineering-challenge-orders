@@ -11,6 +11,7 @@ export const Grid = styled.div`
   grid-template-rows: 64px 1fr auto;
   background: ${theme.backgroundColor400};
   color: ${theme.textColor100};
+  min-height: 100vh;
 `
 
 export const Sider = styled.div`

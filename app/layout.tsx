@@ -4,6 +4,7 @@ import { StoreProvider } from '@/lib/store/provider'
 import { Inter } from 'next/font/google'
 import 'normalize.css/normalize.css'
 import './globals.css'
+import DashBoardLayout from './_components/dash-board-layout'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,7 +25,9 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <StyledComponentsRegistry>
-          <StoreProvider>{children}</StoreProvider>
+          <StoreProvider>
+            <DashBoardLayout>{children}</DashBoardLayout>
+          </StoreProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

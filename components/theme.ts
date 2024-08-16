@@ -6,6 +6,7 @@ export const theme = {
   textColorWhite: 'white',
   textColor100: 'rgb(50, 48, 35)',
   textColor200: 'rgb(128, 123, 103)',
+  textGray100: 'rgb(150, 150, 162)',
   primary: 'rgb(47, 63, 58)',
   hoverButton: 'rgb(34, 45, 38)',
   highlight: 'rgb(210, 111, 80)',
