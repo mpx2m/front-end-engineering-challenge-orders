@@ -65,10 +65,9 @@ const MenuItem = styled.div`
 `
 
 const Logo = styled.div`
-  margin-left: 16px;
   width: 160px;
-  height: 70px;
-  position: relative;
+  margin-left: 16px;
+  margin-bottom: 16px;
 `
 
 const HeaderContent = styled.div`
@@ -128,8 +127,8 @@ const App: React.FC = () => {
           <Image
             src="/images/app-logo.png"
             alt="Logo"
-            fill
-            style={{ objectFit: 'contain' }}
+            width={160}
+            height={31}
           />
         </Logo>
         <MenuItem>Home</MenuItem>
