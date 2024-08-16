@@ -11,6 +11,13 @@ import { HeaderContent } from './_components/header-content'
 const Page: React.FC = () => {
   const pathname = usePathname()
 
+  const menuItems = [
+    { href: '/', label: 'Home' },
+    { href: '/analytics', label: 'Analytics' },
+    { href: '/restaurants', label: 'Restaurants' },
+    { href: '/chef', label: 'Chef' }
+  ]
+
   return (
     <Grid>
       <Sider style={{ paddingTop: 64 }}>
@@ -22,18 +29,15 @@ const Page: React.FC = () => {
             height={31}
           />
         </Logo>
-        <MenuItem href="/" active={pathname === '/'}>
-          Home
-        </MenuItem>
-        <MenuItem href="/analytics" active={pathname === '/analytics'}>
-          Analytics
-        </MenuItem>
-        <MenuItem href="/restaurants" active={pathname === '/restaurants'}>
-          Restaurants
-        </MenuItem>
-        <MenuItem href="/chef" active={pathname === '/chef'}>
-          Chef
-        </MenuItem>
+        {menuItems.map(item => (
+          <MenuItem
+            key={item.href}
+            href={item.href}
+            active={pathname === item.href}
+          >
+            {item.label}
+          </MenuItem>
+        ))}
       </Sider>
       <Header>
         <HeaderContent>
