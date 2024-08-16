@@ -27,6 +27,7 @@ const Page: React.FC = () => {
             alt="Logo"
             width={160}
             height={31}
+            priority
           />
         </Logo>
         {menuItems.map(item => (
