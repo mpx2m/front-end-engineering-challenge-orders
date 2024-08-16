@@ -1,6 +1,10 @@
 'use client'
 
+import { useAppStore } from '@/lib/store/provider'
+
 const Page: React.FC = () => {
+  const { count, incrementCount, decrementCount } = useAppStore(state => state)
+
   return (
     <div
       style={{
@@ -8,6 +12,16 @@ const Page: React.FC = () => {
         textAlign: 'center'
       }}
     >
+      <div>
+        Count: {count}
+        <hr />
+        <button type="button" onClick={() => void incrementCount()}>
+          Increment Count
+        </button>
+        <button type="button" onClick={() => void decrementCount()}>
+          Decrement Count
+        </button>
+      </div>
       <p>long content</p>
       {Array.from({ length: 100 }, (_, index) => (
         <div key={index}>
