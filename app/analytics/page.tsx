@@ -62,7 +62,6 @@ const MenuItem = styled.div<{ active?: boolean }>`
   cursor: ${props => (props.active ? 'default' : 'pointer')};
   background-color: ${props =>
     props.active ? theme.highlight : 'transparent'};
-
   &:hover {
     background-color: ${props =>
       props.active ? theme.highlight : theme.hoverButton};
