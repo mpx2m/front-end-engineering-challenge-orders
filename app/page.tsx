@@ -34,7 +34,7 @@ const Page: React.FC = () => {
           <MenuItem
             key={item.href}
             href={item.href}
-            active={pathname === item.href}
+            isActive={pathname === item.href}
           >
             {item.label}
           </MenuItem>
