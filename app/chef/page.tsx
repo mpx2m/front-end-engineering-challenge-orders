@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import styled from 'styled-components'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 const theme = {
   backgroundColor100: 'rgb(255, 254, 246)',
@@ -56,13 +57,14 @@ const Footer = styled.div`
   color: ${theme.textColor200};
 `
 
-const MenuItem = styled.div<{ active?: boolean }>`
+const MenuItem = styled(Link)<{ active?: boolean }>`
+  text-decoration: none;
+  display: block;
   padding: 16px;
   color: ${theme.textColorWhite};
   cursor: ${props => (props.active ? 'default' : 'pointer')};
   background-color: ${props =>
     props.active ? theme.highlight : 'transparent'};
-
   &:hover {
     background-color: ${props =>
       props.active ? theme.highlight : theme.hoverButton};
@@ -138,10 +140,18 @@ const App: React.FC = () => {
             height={31}
           />
         </Logo>
-        <MenuItem active={pathname === '/'}>Home</MenuItem>
-        <MenuItem active={pathname === '/analytics'}>Analytics</MenuItem>
-        <MenuItem active={pathname === '/restaurants'}>Restaurants</MenuItem>
-        <MenuItem active={pathname === '/chef'}>Chef</MenuItem>
+        <MenuItem href="/" active={pathname === '/'}>
+          Home
+        </MenuItem>
+        <MenuItem href="/analytics" active={pathname === '/analytics'}>
+          Analytics
+        </MenuItem>
+        <MenuItem href="/restaurants" active={pathname === '/restaurants'}>
+          Restaurants
+        </MenuItem>
+        <MenuItem href="/chef" active={pathname === '/chef'}>
+          Chef
+        </MenuItem>
       </Sider>
       <Header>
         <HeaderContent>
