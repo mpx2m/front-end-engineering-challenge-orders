@@ -1,137 +1,19 @@
 'use client'
 
 import Image from 'next/image'
-import styled from 'styled-components'
 import { usePathname } from 'next/navigation'
-import Link from 'next/link'
+import { Grid, Sider, Header, Content, Footer } from '@/components/layout'
+import { Avatar } from '@/components/avatar'
+import { MenuItem } from './_components/menu-item'
+import { Logo } from './_components/logo'
+import { HeaderContent } from './_components/header-content'
 
-const theme = {
-  backgroundColor100: 'rgb(255, 254, 246)',
-  backgroundColor200: 'rgb(248, 246, 236)',
-  backgroundColor300: 'rgb(242, 240, 228)',
-  backgroundColor400: 'rgb(228, 226, 213)',
-  textColorWhite: 'white',
-  textColor100: 'rgb(50, 48, 35)',
-  textColor200: 'rgb(128, 123, 103)',
-  primary: 'rgb(47, 63, 58)',
-  hoverButton: 'rgb(34, 45, 38)',
-  highlight: 'rgb(210, 111, 80)',
-  borderColor100: 'rgb(226, 226, 213)'
-}
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-areas:
-    'sider header'
-    'sider content'
-    'sider footer';
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 64px 1fr auto;
-  background: ${theme.backgroundColor400};
-  color: ${theme.textColor100};
-`
-
-const Sider = styled.div`
-  grid-area: sider;
-  background: ${theme.primary};
-  color: ${theme.textColorWhite};
-  padding-top: 64px;
-`
-
-const Header = styled.div`
-  grid-area: header;
-  background: ${theme.backgroundColor100};
-`
-
-const Content = styled.div`
-  grid-area: content;
-  margin: 24px 16px;
-  background: ${theme.backgroundColor100};
-`
-
-const Footer = styled.div`
-  grid-area: footer;
-  font-size: 12px;
-  text-align: center;
-  margin-bottom: 16px;
-  color: ${theme.textColor200};
-`
-
-const MenuItem = styled(Link)<{ active?: boolean }>`
-  text-decoration: none;
-  display: block;
-  padding: 16px;
-  color: ${theme.textColorWhite};
-  cursor: ${props => (props.active ? 'default' : 'pointer')};
-  background-color: ${props =>
-    props.active ? theme.highlight : 'transparent'};
-  &:hover {
-    background-color: ${props =>
-      props.active ? theme.highlight : theme.hoverButton};
-  }
-`
-
-const Logo = styled.div`
-  width: 160px;
-  margin-left: 16px;
-  margin-bottom: 16px;
-`
-
-const HeaderContent = styled.div`
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  padding-right: 6px;
-  height: 64px;
-`
-
-const AvatarContainer = styled.div`
-  padding: 6px 10px;
-  cursor: pointer;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-`
-
-const AvatarBody = styled.span<{ color?: string }>`
-  display: inline-block;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: ${({ color }) => color || theme.primary};
-  color: ${theme.textColorWhite};
-  margin-right: 8px;
-  font-size: 16px;
-  text-align: center;
-  line-height: 34px;
-`
-
-const AvatarName = styled.span`
-  font-size: 14px;
-  height: 34px;
-  line-height: 34px;
-`
-
-interface AvatarProps {
-  name: string
-  avatarColor?: string
-}
-
-const Avatar: React.FC<AvatarProps> = ({ name, avatarColor }) => {
-  return (
-    <AvatarContainer>
-      <AvatarBody color={avatarColor}>{name[0].toUpperCase()}</AvatarBody>
-      <AvatarName>{name}</AvatarName>
-    </AvatarContainer>
-  )
-}
-
-const App: React.FC = () => {
+const Page: React.FC = () => {
   const pathname = usePathname()
 
   return (
     <Grid>
-      <Sider>
+      <Sider style={{ paddingTop: 64 }}>
         <Logo>
           <Image
             src="/images/app-logo.png"
@@ -179,4 +61,4 @@ const App: React.FC = () => {
   )
 }
 
-export default App
+export default Page
