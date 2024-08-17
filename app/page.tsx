@@ -3,7 +3,6 @@
 import { useAppStore } from '@/lib/store/provider'
 import Table from '@/components/table'
 import { columns } from './_data/columns'
-import { OrderEvent } from '@/lib/socket/order-event'
 import InputNumber from '@/components/input-number'
 import Select from '@/components/select'
 import StatusPanel from './_components/status-panel'
@@ -15,18 +14,6 @@ const Page: React.FC = () => {
   const tableData = useAppStore(state => state.tableData)
 
   const options = ['Option 1', 'Option 2', 'Option 3']
-
-  const countCustomers = (tableData: OrderEvent[]) => {
-    return new Set(tableData.map(event => event.customer)).size
-  }
-
-  const countTotalAmount = (tableData: OrderEvent[]) => {
-    const totalAmount = tableData.reduce(
-      (total, event) => total + event.price,
-      0
-    )
-    return `$${(totalAmount / 100).toFixed(2)}`
-  }
 
   return (
     <>
@@ -41,12 +28,6 @@ const Page: React.FC = () => {
             <span>Status: {isConnected ? 'connected' : 'disconnected'}</span>
             <span style={{ marginLeft: 20 }} />
             <span>Transport: {transport}</span>
-            <span style={{ marginLeft: 20 }} />
-            <span>Order Count: {tableData.length}</span>
-            <span style={{ marginLeft: 20 }} />
-            <span>Customer Count: {countCustomers(tableData)}</span>
-            <span style={{ marginLeft: 20 }} />
-            <span>Total Amount: {countTotalAmount(tableData)}</span>
           </section>
         </div>
         <hr />
