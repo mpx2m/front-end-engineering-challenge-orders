@@ -22,7 +22,7 @@ const SelectButton = styled.div`
   position: relative;
 `
 
-const OptionsContainer = styled.div<{ isOpen: boolean }>`
+const OptionsContainer = styled.div<{ $isOpen: boolean }>`
   position: absolute;
   top: 100%;
   left: 0;
@@ -33,21 +33,21 @@ const OptionsContainer = styled.div<{ isOpen: boolean }>`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   max-height: 200px;
   overflow-y: auto;
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
 `
 
-const Option = styled.div<{ isSelected: boolean }>`
+const Option = styled.div<{ $isSelected: boolean }>`
   padding: 8px;
   cursor: pointer;
-  font-weight: ${({ isSelected }) => (isSelected ? '500' : 'normal')};
-  background-color: ${({ isSelected }) =>
-    isSelected ? theme.highlight2 : 'transparent'};
+  font-weight: ${({ $isSelected }) => ($isSelected ? '500' : 'normal')};
+  background-color: ${({ $isSelected }) =>
+    $isSelected ? theme.highlight2 : 'transparent'};
   text-align: left; /* Ensure the text is left-aligned */
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 
   &:hover {
-    background-color: ${({ isSelected }) =>
-      isSelected
+    background-color: ${({ $isSelected }) =>
+      $isSelected
         ? theme.highlight2
         : '#f5f5f5'}; /* Hover color for selected and non-selected items */
   }
@@ -57,10 +57,10 @@ const Placeholder = styled.span`
   color: #999;
 `
 
-const Arrow = styled.span<{ isVisible: boolean }>`
+const Arrow = styled.span<{ $isVisible: boolean }>`
   font-size: 10px;
   color: #333;
-  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+  visibility: ${({ $isVisible }) => ($isVisible ? 'visible' : 'hidden')};
 `
 
 const ClearButton = styled.span`
@@ -96,19 +96,19 @@ const Select: React.FC<SelectProps> = ({
   options,
   placeholder = 'Select an option'
 }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [$isOpen, set$isOpen] = useState<boolean>(false)
   const [selected, setSelected] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
   // Toggle dropdown menu visibility
   const toggleOpen = () => {
-    setIsOpen(prevState => !prevState)
+    set$isOpen(prevState => !prevState)
   }
 
   // Handle option selection
   const handleSelect = (option: string) => {
     setSelected(option)
-    setIsOpen(false)
+    set$isOpen(false)
   }
 
   // Clear the selected option
@@ -124,7 +124,7 @@ const Select: React.FC<SelectProps> = ({
         containerRef.current &&
         !containerRef.current.contains(event.target as Node)
       ) {
-        setIsOpen(false)
+        set$isOpen(false)
       }
     }
 
@@ -137,14 +137,14 @@ const Select: React.FC<SelectProps> = ({
       <SelectButton onClick={toggleOpen}>
         {selected || <Placeholder>{placeholder}</Placeholder>}
         {selected && <ClearButton onClick={handleClear}>✕</ClearButton>}
-        <Arrow isVisible={!selected}>{isOpen ? 'ᐱ' : 'ᐯ'}</Arrow>
+        <Arrow $isVisible={!selected}>{$isOpen ? 'ᐱ' : 'ᐯ'}</Arrow>
       </SelectButton>
-      <OptionsContainer isOpen={isOpen}>
+      <OptionsContainer $isOpen={$isOpen}>
         {options.map(option => (
           <Option
             key={option}
             onClick={() => handleSelect(option)}
-            isSelected={option === selected}
+            $isSelected={option === selected}
           >
             {option}
           </Option>
