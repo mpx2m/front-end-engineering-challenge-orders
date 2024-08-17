@@ -2,14 +2,9 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { theme, bg, textColor } from '@/components/theme'
 
-const Container = styled.div`
-  display: inline-flex;
-`
-
 const InputWrapper = styled.div`
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  flex: 1;
   position: relative;
 `
 
@@ -17,9 +12,8 @@ const Input = styled.input`
   border-radius: 8px;
   letter-spacing: 1px;
   padding: 8px;
-  font-size: 16px;
-  flex: 1;
-  padding-right: 30px;
+  padding-left: 12px;
+  padding-right: 20px;
   border: 1px solid ${bg.color4};
   background-color: transparent;
 
@@ -41,7 +35,6 @@ const Input = styled.input`
 const CurrencySymbol = styled.div`
   position: absolute;
   right: 10px;
-  font-size: 16px;
   color: ${textColor.color2};
 `
 
@@ -61,17 +54,15 @@ const InputNumber: React.FC = () => {
   }
 
   return (
-    <Container>
-      <InputWrapper>
-        <Input
-          type="text"
-          value={value}
-          onChange={handleChange}
-          placeholder="0.00"
-        />
-        <CurrencySymbol>$</CurrencySymbol>
-      </InputWrapper>
-    </Container>
+    <InputWrapper>
+      <Input
+        type="text"
+        value={value}
+        onChange={handleChange}
+        placeholder="0.00"
+      />
+      <CurrencySymbol>$</CurrencySymbol>
+    </InputWrapper>
   )
 }
 
