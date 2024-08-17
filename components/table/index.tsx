@@ -1,30 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 import { TableProps, DataItem } from './props'
+import { textColor, bg } from '@/components/theme'
 
 const TableWrapper = styled.div`
   max-width: 100%;
   overflow-x: auto;
-  border-radius: 0.25rem;
-  border: 1px solid #dee2e6;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  border-radius: 4px;
 `
 
 const T = styled.table`
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
 `
 
-const Thead = styled.thead`
-  background-color: #f8f9fa;
-  color: #212529;
-`
+const Thead = styled.thead``
 
 const Th = styled.th`
   padding: 0.75rem 1.25rem;
   text-align: left;
-  border-bottom: 2px solid #dee2e6;
+  border-bottom: 2px solid ${bg.color4};
   font-weight: 600;
 `
 
@@ -32,29 +27,26 @@ const Tbody = styled.tbody``
 
 const Tr = styled.tr`
   &:nth-child(odd) {
-    background-color: #f9f9f9;
+    background-color: ${bg.color2};
   }
-  &:nth-child(even) {
-    background-color: #fff;
-  }
+
   &:hover {
-    background-color: #e9ecef;
+    background-color: ${bg.color3};
   }
 `
 
 const Td = styled.td`
   padding: 0.75rem 1.25rem;
-  text-align: left;
   border-bottom: 1px solid #dee2e6;
 `
 
 const NoDataMessage = styled.tr`
-  height: 50px; /* Adjust height as needed */
+  height: 80px;
 `
 
 const NoDataTd = styled.td`
   text-align: center;
-  color: #6c757d;
+  color: ${textColor.color2};
   font-style: italic;
   font-size: 0.875rem;
 `

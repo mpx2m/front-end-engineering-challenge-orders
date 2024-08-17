@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { theme, bg, textColor } from '@/components/theme'
+import { theme, border, textColor, bg } from '@/components/theme'
 
 const InputWrapper = styled.div`
   display: inline-flex;
@@ -14,7 +14,7 @@ const Input = styled.input`
   padding: 8px;
   padding-left: 12px;
   padding-right: 20px;
-  border: 1px solid ${bg.color4};
+  border: 1px solid ${border.color2};
   background-color: transparent;
 
   &::placeholder {
