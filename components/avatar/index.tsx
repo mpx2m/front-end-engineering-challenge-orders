@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { theme } from '@/components/theme'
+import { theme, textColor } from '@/components/theme'
 import { AvatarProps } from './props'
 
 const AvatarContainer = styled.div`
@@ -16,7 +16,7 @@ const AvatarBody = styled.span<{ color?: string }>`
   height: 34px;
   border-radius: 50%;
   background: ${({ color }) => color || theme.primary};
-  color: ${theme.textColorWhite};
+  color: ${textColor.white};
   margin-right: 8px;
   font-size: 16px;
   text-align: center;

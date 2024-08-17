@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { theme } from '@/components/theme'
+import { textColor, bg } from '@/components/theme'
 import Button from '@/components/button'
 import { useRouter } from 'next/navigation'
 
@@ -25,7 +25,7 @@ const Title = styled.section`
 `
 
 const LoremIpsum = styled.section`
-  color: ${theme.textGray300};
+  color: ${textColor.gray3};
   line-height: 1.3;
 `
 
@@ -53,10 +53,10 @@ const BlankPage: React.FC = () => {
         <Button
           onClick={() => router.push('/')}
           style={{ marginTop: 45 }}
-          color={theme.textGray300}
-          $backgroundColor={theme.backgroundColor100}
-          $hoverBackgroundColor={theme.backgroundColor200}
-          $borderColor={theme.textGray100}
+          color={textColor.gray3}
+          $backgroundColor={bg.color1}
+          $hoverBackgroundColor={bg.color2}
+          $borderColor={textColor.gray1}
         >
           Back to Order
         </Button>

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { theme } from '@/components/theme'
+import { theme, textColor } from '@/components/theme'
 
 interface ButtonProps {
   $backgroundColor?: string
@@ -15,13 +15,12 @@ const BaseButton = styled.button<ButtonProps>`
   border-radius: 50px;
   transition: background-color 0.15s ease-in-out;
   background-color: ${props => props.$backgroundColor || theme.primary};
-  color: ${props => props.color || theme.textColorWhite};
+  color: ${props => props.color || textColor.white};
   cursor: pointer;
   border: 1px solid ${props => props.$borderColor || 'transparent'};
 
   &:hover {
-    background-color: ${props =>
-      props.$hoverBackgroundColor || theme.hoverButton};
+    background-color: ${props => props.$hoverBackgroundColor || theme.hover};
   }
 `
 

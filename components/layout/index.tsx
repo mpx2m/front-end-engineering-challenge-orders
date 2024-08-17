@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { theme } from '@/components/theme'
+import { theme, bg, textColor } from '@/components/theme'
 
 export const Grid = styled.div`
   display: grid;
@@ -9,27 +9,26 @@ export const Grid = styled.div`
     'sider footer';
   grid-template-columns: 200px 1fr;
   grid-template-rows: 64px 1fr auto;
-  background: ${theme.backgroundColor400};
-  color: ${theme.textColor100};
+  background: ${bg.color4};
+  color: ${textColor.color1};
   min-height: 100vh;
-  overflow: auto;
 `
 
 export const Sider = styled.div`
   grid-area: sider;
   background: ${theme.primary};
-  color: ${theme.textColorWhite};
+  color: ${textColor.white};
 `
 
 export const Header = styled.div`
   grid-area: header;
-  background: ${theme.backgroundColor100};
+  background: ${bg.color1};
 `
 
 export const Content = styled.div`
   grid-area: content;
   margin: 24px 16px;
-  background: ${theme.backgroundColor100};
+  background: ${bg.color1};
 `
 
 export const Footer = styled.div`
@@ -37,5 +36,5 @@ export const Footer = styled.div`
   font-size: 12px;
   text-align: center;
   margin-bottom: 16px;
-  color: ${theme.textColor200};
+  color: ${textColor.color2};
 `
