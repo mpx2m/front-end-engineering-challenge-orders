@@ -23,3 +23,7 @@ export const textColor = {
   gray2: 'rgb(163, 163, 163)',
   gray3: 'rgb(108, 108, 108)'
 }
+
+export const breakpoint = {
+  lg: '1024px'
+}
