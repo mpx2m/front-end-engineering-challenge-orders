@@ -16,12 +16,16 @@ const T = styled.table`
   border-collapse: collapse;
 `
 
-const Thead = styled.thead``
+const Thead = styled.thead`
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`
 
 const Th = styled.th`
   padding: 0.75rem 1.25rem;
   text-align: left;
-  border-bottom: 2px solid ${bg.color4};
   font-weight: 600;
 `
 
@@ -51,6 +55,10 @@ const NoDataTd = styled.td`
   color: ${textColor.color2};
   font-style: italic;
   font-size: 0.875rem;
+
+  &:hover {
+    background-color: ${bg.color1};
+  }
 `
 
 const Table: React.FC<TableProps> = ({ dataSource, columns, rowKey }) => {
