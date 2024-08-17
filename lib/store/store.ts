@@ -32,16 +32,16 @@ export const initializeStore = (initState: State) => {
     setTransport: transport => set({ transport }),
     updateAllEvents: eventList => {
       set(state => {
-        const newAllEvents = [...state.allEvents]
+        const allEvents = [...state.allEvents]
         eventList.forEach(event => {
-          const index = newAllEvents.findIndex(order => order.id === event.id)
+          const index = allEvents.findIndex(({ id }) => id === event.id)
           if (index === -1) {
-            newAllEvents.push(event)
+            allEvents.push(event)
           } else {
-            newAllEvents[index] = event
+            allEvents[index] = event
           }
         })
-        return { allEvents: newAllEvents }
+        return { allEvents }
       })
     }
   }))
