@@ -25,7 +25,13 @@ const Input = styled.input`
   font-size: 16px;
   flex: 1;
   text-align: right;
-  padding-right: 30px; /* 给美元符号留出空间 */
+  padding-right: 30px;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `
 
 const CurrencySymbol = styled.div`
