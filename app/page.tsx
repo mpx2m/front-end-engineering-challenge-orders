@@ -2,11 +2,20 @@
 
 import { useAppStore } from '@/lib/store/provider'
 import Table from '@/components/table'
-import { dataSource } from './_data/dataSource'
 import { columns } from './_data/columns'
+import { OrderEvent } from '@/lib/socket/order-event'
 
 const Page: React.FC = () => {
-  const { isConnected, transport } = useAppStore(state => state)
+  const { isConnected, transport, orderEventTableData } = useAppStore(
+    state => state
+  )
+
+  const countCustomers = (orderEventTableData: OrderEvent[]) => {
+    const uniqueCustomers = new Set(
+      orderEventTableData.map(order => order.customer)
+    )
+    return uniqueCustomers.size
+  }
 
   return (
     <div
@@ -22,16 +31,16 @@ const Page: React.FC = () => {
           <span style={{ marginLeft: 20 }} />
           <span>Transport: {transport}</span>
           <span style={{ marginLeft: 20 }} />
-          <span>Order Count: {10000}</span>
+          <span>Order Count: {orderEventTableData.length}</span>
           <span style={{ marginLeft: 20 }} />
-          <span>Customer Count: {20000}</span>
+          <span>Customer Count: {countCustomers(orderEventTableData)}</span>
           <span style={{ marginLeft: 20 }} />
           <span>Total Amount ($): {30000}</span>
         </section>
       </div>
       <hr />
       <div style={{ marginTop: '20px' }}>
-        <Table dataSource={dataSource} columns={columns} rowKey="id" />
+        <Table dataSource={orderEventTableData} columns={columns} rowKey="id" />
       </div>
     </div>
   )

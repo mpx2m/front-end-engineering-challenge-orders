@@ -1,7 +1,8 @@
 'use client'
 
 import { type ReactNode, useEffect } from 'react'
-import { socket, OrderEvent } from '@/lib/socket'
+import { socket } from '@/lib/socket/client'
+import { OrderEvent } from '@/lib/socket/order-event'
 import { useAppStore } from '@/lib/store/provider'
 
 interface SocketLayerProps {
@@ -9,7 +10,9 @@ interface SocketLayerProps {
 }
 
 const SocketLayer: React.FC<SocketLayerProps> = ({ children }) => {
-  const { setIsConnected, setTransport } = useAppStore(state => state)
+  const { setIsConnected, setTransport, updateOrderEvents } = useAppStore(
+    state => state
+  )
 
   useEffect(() => {
     const onConnect = () => {
@@ -26,8 +29,8 @@ const SocketLayer: React.FC<SocketLayerProps> = ({ children }) => {
       setTransport('N/A')
     }
 
-    const onOrderEvent = (data: OrderEvent) => {
-      console.log('Received order event', data)
+    const onOrderEvent = (eventList: OrderEvent[]) => {
+      updateOrderEvents(eventList)
     }
 
     if (socket.connected) {
