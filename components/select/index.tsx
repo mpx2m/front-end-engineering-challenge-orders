@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
+import { textColor, theme } from '../theme'
 
-// 定义样式
 const Container = styled.div`
   display: inline-block;
   position: relative;
-  width: 200px; /* 调整宽度 */
+  width: 200px;
 `
 
 const SelectButton = styled.div`
@@ -35,11 +35,17 @@ const OptionsContainer = styled.div<{ isOpen: boolean }>`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
 `
 
-const Option = styled.div`
+const Option = styled.div<{ isSelected: boolean }>`
   padding: 8px;
   cursor: pointer;
+  font-weight: ${({ isSelected }) => (isSelected ? '500' : 'normal')};
+  background-color: ${({ isSelected }) =>
+    isSelected ? theme.highlight2 : 'transparent'};
   &:hover {
-    background-color: #f0f0f0;
+    background-color: ${({ isSelected }) =>
+      isSelected
+        ? theme.highlight2
+        : '#f5f5f5'}; /* Hover color for selected and non-selected items */
   }
 `
 
@@ -100,7 +106,11 @@ const Select: React.FC<SelectProps> = ({
       </SelectButton>
       <OptionsContainer isOpen={isOpen}>
         {options.map(option => (
-          <Option key={option} onClick={() => handleSelect(option)}>
+          <Option
+            key={option}
+            onClick={() => handleSelect(option)}
+            isSelected={option === selected}
+          >
             {option}
           </Option>
         ))}

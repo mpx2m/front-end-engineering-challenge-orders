@@ -1,7 +1,8 @@
 export const theme = {
   primary: 'rgb(47, 63, 58)',
   hover: 'rgb(34, 45, 38)',
-  highlight: 'rgb(210, 111, 80)'
+  highlight: 'rgb(210, 111, 80)',
+  highlight2: 'rgba(210, 111, 80,0.4)'
 }
 
 export const bg = {
