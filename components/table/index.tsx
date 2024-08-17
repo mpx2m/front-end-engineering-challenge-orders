@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { TableProps, DataItem } from './props'
-import { textColor, bg } from '@/components/theme'
+import { theme, textColor, bg } from '@/components/theme'
 
 const TableWrapper = styled.div`
   max-width: 100%;
+  max-height: 2000px;
   overflow-x: auto;
+  overflow-y: auto;
   border-radius: 4px;
 `
 
@@ -23,21 +25,21 @@ const Th = styled.th`
   font-weight: 600;
 `
 
-const Tbody = styled.tbody``
+const Tbody = styled.tbody`
+  & tr:hover {
+    background-color: ${theme.highlight2};
+  }
+`
 
 const Tr = styled.tr`
   &:nth-child(odd) {
     background-color: ${bg.color2};
   }
-
-  &:hover {
-    background-color: ${bg.color3};
-  }
 `
 
 const Td = styled.td`
   padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid ${bg.color4};
 `
 
 const NoDataMessage = styled.tr`

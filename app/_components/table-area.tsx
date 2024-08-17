@@ -6,6 +6,7 @@ import columns from './../_data/columns'
 
 const TableArea: React.FC = () => {
   const tableData = useAppStore(state => state.tableData)
+  // const allEvents = useAppStore(state => state.allEvents)
 
   return (
     <div>
