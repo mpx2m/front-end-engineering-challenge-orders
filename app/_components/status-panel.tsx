@@ -2,7 +2,7 @@
 
 import styled from 'styled-components'
 import { useAppStore } from '@/lib/store/provider'
-import { bg, textColor } from '@/components/theme'
+import { theme, bg, textColor } from '@/components/theme'
 import { OrderEvent } from '@/lib/socket/order-event'
 
 const Container = styled.div`
@@ -30,6 +30,10 @@ const ItemContent = styled.div`
   margin-top: 8px;
   font-size: 24px;
   ${textColor.color1}
+`
+
+const Disconnected = styled.span`
+  color: ${theme.highlight};
 `
 
 const StatusPanel: React.FC = () => {
@@ -64,7 +68,13 @@ const StatusPanel: React.FC = () => {
       </Item>
       <Item>
         <ItemTitle>Status</ItemTitle>
-        <ItemContent>{isConnected ? 'Connected' : 'Disconnected'}</ItemContent>
+        <ItemContent>
+          {isConnected ? (
+            'connected'
+          ) : (
+            <Disconnected>disconnected</Disconnected>
+          )}
+        </ItemContent>
       </Item>
     </Container>
   )
