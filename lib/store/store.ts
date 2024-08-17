@@ -1,24 +1,25 @@
 import { createStore } from 'zustand/vanilla'
 
 export interface State {
-  count: number
+  isConnected: boolean
+  transport: string
 }
 
 export interface Actions {
-  decrementCount: () => void
-  incrementCount: () => void
+  setIsConnected: (isConnected: boolean) => void
+  setTransport: (transport: string) => void
+}
+
+export const initStore = (): State => {
+  return { isConnected: false, transport: 'N/A' }
 }
 
 export interface StoreInterface extends State, Actions {}
 
-export const initStore = () => {
-  return { count: 0 }
-}
-
 export const initializeStore = (initState: State) => {
   return createStore<StoreInterface>()(set => ({
     ...initState,
-    decrementCount: () => set(state => ({ count: state.count - 1 })),
-    incrementCount: () => set(state => ({ count: state.count + 1 }))
+    setIsConnected: isConnected => set({ isConnected }),
+    setTransport: transport => set({ transport })
   }))
 }

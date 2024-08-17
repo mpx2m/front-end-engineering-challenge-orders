@@ -1,15 +1,12 @@
 'use client'
 
-import { useState } from 'react'
 import { useAppStore } from '@/lib/store/provider'
 import Table from '@/components/table'
 import { dataSource } from './_data/dataSource'
 import { columns } from './_data/columns'
 
 const Page: React.FC = () => {
-  const { count, incrementCount, decrementCount } = useAppStore(state => state)
-  const [isConnected, setIsConnected] = useState(false)
-  const [transport, setTransport] = useState('N/A')
+  const { isConnected, transport } = useAppStore(state => state)
 
   return (
     <div
@@ -33,16 +30,6 @@ const Page: React.FC = () => {
         </section>
       </div>
       <hr />
-      <div>
-        <section>Count: {count}</section>
-        <button type="button" onClick={() => void incrementCount()}>
-          Increment Count
-        </button>
-        <button type="button" onClick={() => void decrementCount()}>
-          Decrement Count
-        </button>
-      </div>
-
       <div style={{ marginTop: '20px' }}>
         <Table dataSource={dataSource} columns={columns} rowKey="id" />
       </div>

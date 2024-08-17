@@ -25,7 +25,7 @@ export const columns = [
     dataIndex: 'item'
   },
   {
-    title: 'Price',
+    title: 'Price ($)',
     key: 'price',
     dataIndex: 'price'
   },

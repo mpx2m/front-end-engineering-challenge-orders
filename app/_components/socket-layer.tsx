@@ -1,15 +1,15 @@
 'use client'
 
-import { type ReactNode, useEffect, useState } from 'react'
+import { type ReactNode, useEffect } from 'react'
 import { socket, OrderEvent } from '@/lib/socket'
+import { useAppStore } from '@/lib/store/provider'
 
 interface SocketLayerProps {
   children: ReactNode
 }
 
 const SocketLayer: React.FC<SocketLayerProps> = ({ children }) => {
-  const [isConnected, setIsConnected] = useState(false)
-  const [transport, setTransport] = useState('N/A')
+  const { setIsConnected, setTransport } = useAppStore(state => state)
 
   useEffect(() => {
     const onConnect = () => {
