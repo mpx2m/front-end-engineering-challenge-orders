@@ -19,6 +19,7 @@ const InputWrapper = styled.div`
 `
 
 const Input = styled.input`
+  letter-spacing: 1px;
   border: none;
   outline: none;
   padding: 8px;
