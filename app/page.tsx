@@ -4,6 +4,7 @@ import { useAppStore } from '@/lib/store/provider'
 import Table from '@/components/table'
 import { columns } from './_data/columns'
 import { OrderEvent } from '@/lib/socket/order-event'
+import InputNumber from '@/components/InputNumber'
 // import { dataSourceTest } from './_data/dataSourceTest' // FOR Test
 
 const Page: React.FC = () => {
@@ -46,6 +47,7 @@ const Page: React.FC = () => {
         </section>
       </div>
       <hr />
+      <InputNumber />
       <div style={{ marginTop: '20px' }}>
         <Table dataSource={tableData} columns={columns} rowKey="id" />
       </div>
