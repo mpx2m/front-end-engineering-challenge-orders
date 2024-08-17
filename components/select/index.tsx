@@ -41,6 +41,9 @@ const Option = styled.div<{ isSelected: boolean }>`
   font-weight: ${({ isSelected }) => (isSelected ? '500' : 'normal')};
   background-color: ${({ isSelected }) =>
     isSelected ? theme.highlight2 : 'transparent'};
+  text-align: left; /* Ensure the text is left-aligned */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+
   &:hover {
     background-color: ${({ isSelected }) =>
       isSelected
@@ -58,7 +61,7 @@ const Arrow = styled.span`
   color: #333;
 `
 
-// 定义组件
+// Define the component
 interface SelectProps {
   options: string[]
   placeholder?: string
@@ -72,18 +75,18 @@ const Select: React.FC<SelectProps> = ({
   const [selected, setSelected] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // 切换下拉菜单的显示状态
+  // Toggle dropdown menu visibility
   const toggleOpen = () => {
     setIsOpen(prevState => !prevState)
   }
 
-  // 处理选项选择
+  // Handle option selection
   const handleSelect = (option: string) => {
     setSelected(option)
     setIsOpen(false)
   }
 
-  // 点击外部区域关闭下拉菜单
+  // Close dropdown menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -102,7 +105,7 @@ const Select: React.FC<SelectProps> = ({
     <Container ref={containerRef}>
       <SelectButton onClick={toggleOpen}>
         {selected || <Placeholder>{placeholder}</Placeholder>}
-        <Arrow>{isOpen ? '▲' : '▼'}</Arrow>
+        <Arrow>{isOpen ? 'ᐱ' : 'ᐯ'}</Arrow>
       </SelectButton>
       <OptionsContainer isOpen={isOpen}>
         {options.map(option => (
