@@ -2,26 +2,39 @@
 
 import styled from 'styled-components'
 import InputNumber from '@/components/input-number'
-import Select from '@/components/select'
+import { theme } from '@/components/theme'
+// import Select from '@/components/select'
 
-const Content = styled.div`
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between; /* Aligns Title and FormGroup to the edges */
   height: 56px;
 `
-const Title = styled.div``
+
+const Title = styled.div`
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 36px;
+`
+
 const FormGroup = styled.div``
+
+const Spacer = styled.span`
+  margin-right: 16px;
+`
 
 const Forms: React.FC = () => {
   const options = ['Option 1', 'Option 2', 'Option 3']
 
   return (
-    <Content>
-      <Title>Order Event Table</Title>
+    <Container>
+      <Title>Order Events</Title>
       <FormGroup>
-        <Select options={options} placeholder="Select an option" />
-        <span style={{ marginRight: 16 }} />
+        {/* <Select options={options} placeholder="Select an option" /> */}
+        <Spacer />
         <InputNumber />
       </FormGroup>
-    </Content>
+    </Container>
   )
 }
 
