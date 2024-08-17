@@ -7,7 +7,7 @@ import './globals.css'
 import DashBoardLayout from './_components/dashboard-layout'
 import SocketLayer from './_components/socket-layer'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], preload: false })
 
 export const metadata: Metadata = {
   title: 'Front-end Engineering Challenge',
