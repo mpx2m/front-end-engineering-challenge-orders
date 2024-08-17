@@ -64,16 +64,25 @@ const Arrow = styled.span<{ isVisible: boolean }>`
 `
 
 const ClearButton = styled.span`
-  font-size: 16px;
+  font-size: 14px;
   color: #999;
   cursor: pointer;
   position: absolute;
-  right: 8px;
+  right: 4px;
   top: 50%;
   transform: translateY(-50%);
+  width: 20px; /* Set a fixed width */
+  height: 20px; /* Set a fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Make it circular */
+  background-color: transparent; /* Default background color */
+  transition: background-color 0.3s ease; /* Smooth transition for background color change */
+
   &:hover {
     color: white;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2); /* Darker background on hover */
   }
 `
 
