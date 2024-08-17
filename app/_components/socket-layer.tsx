@@ -12,7 +12,7 @@ interface SocketLayerProps {
 const SocketLayer: React.FC<SocketLayerProps> = ({ children }) => {
   const setIsConnected = useAppStore(state => state.setIsConnected)
   const setTransport = useAppStore(state => state.setTransport)
-  const updateOrderEvents = useAppStore(state => state.updateOrderEvents)
+  const updateAllEvents = useAppStore(state => state.updateAllEvents)
 
   useEffect(() => {
     const onConnect = () => {
@@ -30,7 +30,7 @@ const SocketLayer: React.FC<SocketLayerProps> = ({ children }) => {
     }
 
     const onOrderEvent = (eventList: OrderEvent[]) => {
-      updateOrderEvents(eventList)
+      updateAllEvents(eventList)
     }
 
     if (socket.connected) {

@@ -11,7 +11,7 @@ export interface State {
 export interface Actions {
   setIsConnected: (isConnected: boolean) => void
   setTransport: (transport: string) => void
-  updateOrderEvents: (eventList: OrderEvent[]) => void
+  updateAllEvents: (eventList: OrderEvent[]) => void
 }
 
 export const initStore = (): State => {
@@ -30,7 +30,7 @@ export const initializeStore = (initState: State) => {
     ...initState,
     setIsConnected: isConnected => set({ isConnected }),
     setTransport: transport => set({ transport }),
-    updateOrderEvents: eventList => {
+    updateAllEvents: eventList => {
       set(state => {
         const newAllEvents = [...state.allEvents]
         eventList.forEach(event => {
