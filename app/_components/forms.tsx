@@ -2,12 +2,11 @@
 
 import styled from 'styled-components'
 import InputNumber from '@/components/input-number'
-import { theme } from '@/components/theme'
 // import Select from '@/components/select'
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between; /* Aligns Title and FormGroup to the edges */
+  justify-content: space-between;
   height: 56px;
 `
 
@@ -24,7 +23,7 @@ const Spacer = styled.span`
 `
 
 const Forms: React.FC = () => {
-  const options = ['Option 1', 'Option 2', 'Option 3']
+  // const options = ['Option 1', 'Option 2', 'Option 3']
 
   return (
     <Container>

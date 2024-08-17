@@ -10,6 +10,7 @@ const Content = styled.div`
   margin-top: 24px;
   padding: 24px;
   background: ${bg.color1};
+  min-height: 400px;
 `
 
 const Page: React.FC = () => {
