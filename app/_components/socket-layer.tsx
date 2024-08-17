@@ -1,7 +1,7 @@
 'use client'
 
 import { type ReactNode, useEffect } from 'react'
-import { socket } from '@/lib/socket/client'
+import socket from '@/lib/socket/client'
 import { OrderEvent } from '@/lib/socket/order-event'
 import { useAppStore } from '@/lib/store/provider'
 

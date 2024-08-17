@@ -5,13 +5,13 @@ import { useAppStore } from '@/lib/store/provider'
 import { bg, textColor } from '@/components/theme'
 import { OrderEvent } from '@/lib/socket/order-event'
 
-export const Container = styled.div`
+const Container = styled.div`
   display: flex;
   background: ${bg.color1};
   padding: 20px;
 `
 
-export const Item = styled.div`
+const Item = styled.div`
   background: ${bg.color1};
   text-align: center;
   flex: 1;
@@ -21,12 +21,12 @@ export const Item = styled.div`
   }
 `
 
-export const ItemTitle = styled.div`
+const ItemTitle = styled.div`
   font-size: 14px;
   color: ${textColor.color2};
 `
 
-export const ItemContent = styled.div`
+const ItemContent = styled.div`
   margin-top: 8px;
   font-size: 24px;
   ${textColor.color1}
@@ -34,6 +34,7 @@ export const ItemContent = styled.div`
 
 const StatusPanel: React.FC = () => {
   const tableData = useAppStore(state => state.tableData)
+  const isConnected = useAppStore(state => state.isConnected)
 
   const countCustomers = (tableData: OrderEvent[]) => {
     return new Set(tableData.map(event => event.customer)).size
@@ -60,6 +61,10 @@ const StatusPanel: React.FC = () => {
       <Item>
         <ItemTitle>Total Amount</ItemTitle>
         <ItemContent>{countTotalAmount(tableData)}</ItemContent>
+      </Item>
+      <Item>
+        <ItemTitle>Status</ItemTitle>
+        <ItemContent>{isConnected ? 'Connected' : 'Disconnected'}</ItemContent>
       </Item>
     </Container>
   )

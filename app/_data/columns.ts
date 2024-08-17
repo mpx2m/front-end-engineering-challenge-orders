@@ -1,4 +1,4 @@
-export const columns = [
+const columns = [
   {
     title: 'Id',
     key: 'id',
@@ -36,3 +36,5 @@ export const columns = [
   //   dataIndex: 'sent_at_second'
   // }
 ]
+
+export default columns

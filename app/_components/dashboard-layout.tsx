@@ -4,10 +4,10 @@ import { type ReactNode } from 'react'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Grid, Sider, Header, Content, Footer } from '@/components/layout'
-import { Avatar } from '@/components/avatar'
-import { MenuItem } from './menu-item'
-import { Logo } from './logo'
-import { HeaderContent } from './header-content'
+import Avatar from '@/components/avatar'
+import MenuItem from './menu-item'
+import Logo from './logo'
+import HeaderContent from './header-content'
 
 interface DashBoardLayoutProps {
   children: ReactNode

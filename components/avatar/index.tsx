@@ -29,7 +29,7 @@ const AvatarName = styled.span`
   line-height: 34px;
 `
 
-export const Avatar: React.FC<AvatarProps> = ({ name, avatarColor }) => {
+const Avatar: React.FC<AvatarProps> = ({ name, avatarColor }) => {
   return (
     <AvatarContainer>
       <AvatarBody color={avatarColor}>{name[0].toUpperCase()}</AvatarBody>
@@ -37,3 +37,5 @@ export const Avatar: React.FC<AvatarProps> = ({ name, avatarColor }) => {
     </AvatarContainer>
   )
 }
+
+export default Avatar

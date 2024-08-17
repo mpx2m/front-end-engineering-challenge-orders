@@ -2,7 +2,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { theme, textColor } from '@/components/theme'
 
-export const MenuItem = styled(Link)<{ $isActive?: boolean }>`
+const MenuItem = styled(Link)<{ $isActive?: boolean }>`
   text-decoration: none;
   display: block;
   padding: 16px;
@@ -15,3 +15,5 @@ export const MenuItem = styled(Link)<{ $isActive?: boolean }>`
       props.$isActive ? theme.highlight : theme.hover};
   }
 `
+
+export default MenuItem

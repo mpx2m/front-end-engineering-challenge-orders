@@ -1,4 +1,4 @@
-export const dataSourceTest = [
+const dataSourceTest = [
   {
     customer: 'Alan',
     destination: '61109 Alan Motorway, North Corey, CA 92789',
@@ -27,3 +27,5 @@ export const dataSourceTest = [
     sent_at_second: 18
   }
 ]
+
+export default dataSourceTest
