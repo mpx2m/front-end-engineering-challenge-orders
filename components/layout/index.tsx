@@ -30,7 +30,6 @@ export const Header = styled.div`
 export const Content = styled.div`
   grid-area: content;
   margin: 24px 16px;
-  background: ${bg.color1};
 `
 
 export const Footer = styled.div`

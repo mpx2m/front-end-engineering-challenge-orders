@@ -4,6 +4,7 @@ import Button from '@/components/button'
 import { useRouter } from 'next/navigation'
 
 const Container = styled.div`
+  background: ${bg.color1};
   display: grid;
   grid-template-areas: 'text image';
   grid-template-columns: 1fr 1fr;
