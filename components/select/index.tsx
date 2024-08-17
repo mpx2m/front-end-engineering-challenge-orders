@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import { textColor, theme } from '../theme'
+import { theme } from '../theme'
 
 const Container = styled.div`
   display: inline-block;
@@ -19,6 +19,7 @@ const SelectButton = styled.div`
   cursor: pointer;
   font-size: 16px;
   color: #333;
+  position: relative;
 `
 
 const OptionsContainer = styled.div<{ isOpen: boolean }>`
@@ -56,9 +57,23 @@ const Placeholder = styled.span`
   color: #999;
 `
 
-const Arrow = styled.span`
+const Arrow = styled.span<{ isVisible: boolean }>`
   font-size: 12px;
   color: #333;
+  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+`
+
+const ClearButton = styled.span`
+  font-size: 12px;
+  color: #999;
+  cursor: pointer;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  &:hover {
+    color: #333;
+  }
 `
 
 // Define the component
@@ -86,6 +101,12 @@ const Select: React.FC<SelectProps> = ({
     setIsOpen(false)
   }
 
+  // Clear the selected option
+  const handleClear = (event: React.MouseEvent) => {
+    event.stopPropagation() // Prevent click event from closing the dropdown
+    setSelected(null)
+  }
+
   // Close dropdown menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -105,7 +126,8 @@ const Select: React.FC<SelectProps> = ({
     <Container ref={containerRef}>
       <SelectButton onClick={toggleOpen}>
         {selected || <Placeholder>{placeholder}</Placeholder>}
-        <Arrow>{isOpen ? 'ᐱ' : 'ᐯ'}</Arrow>
+        {selected && <ClearButton onClick={handleClear}>✕</ClearButton>}
+        <Arrow isVisible={!selected}>{isOpen ? 'ᐱ' : 'ᐯ'}</Arrow>
       </SelectButton>
       <OptionsContainer isOpen={isOpen}>
         {options.map(option => (
