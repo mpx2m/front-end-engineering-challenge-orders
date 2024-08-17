@@ -58,13 +58,13 @@ const Placeholder = styled.span`
 `
 
 const Arrow = styled.span<{ isVisible: boolean }>`
-  font-size: 12px;
+  font-size: 10px;
   color: #333;
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
 `
 
 const ClearButton = styled.span`
-  font-size: 12px;
+  font-size: 16px;
   color: #999;
   cursor: pointer;
   position: absolute;
@@ -72,7 +72,8 @@ const ClearButton = styled.span`
   top: 50%;
   transform: translateY(-50%);
   &:hover {
-    color: #333;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 `
 

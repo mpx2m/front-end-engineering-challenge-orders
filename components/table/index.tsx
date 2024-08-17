@@ -48,6 +48,17 @@ const Td = styled.td`
   border-bottom: 1px solid #dee2e6;
 `
 
+const NoDataMessage = styled.tr`
+  height: 50px; /* Adjust height as needed */
+`
+
+const NoDataTd = styled.td`
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  font-size: 0.875rem;
+`
+
 const Table: React.FC<TableProps> = ({ dataSource, columns, rowKey }) => {
   const getRowKey = (record: DataItem) => {
     if (typeof rowKey === 'function') {
@@ -70,17 +81,23 @@ const Table: React.FC<TableProps> = ({ dataSource, columns, rowKey }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {dataSource.map(data => (
-            <Tr key={getRowKey(data)}>
-              {columns.map(col => (
-                <Td key={col.key}>
-                  {col.render
-                    ? col.render(data[col.dataIndex], data)
-                    : data[col.dataIndex]}
-                </Td>
-              ))}
-            </Tr>
-          ))}
+          {dataSource.length === 0 ? (
+            <NoDataMessage>
+              <NoDataTd colSpan={columns.length}>No data available</NoDataTd>
+            </NoDataMessage>
+          ) : (
+            dataSource.map(data => (
+              <Tr key={getRowKey(data)}>
+                {columns.map(col => (
+                  <Td key={col.key}>
+                    {col.render
+                      ? col.render(data[col.dataIndex], data)
+                      : data[col.dataIndex]}
+                  </Td>
+                ))}
+              </Tr>
+            ))
+          )}
         </Tbody>
       </T>
     </TableWrapper>

@@ -30,12 +30,10 @@ const Page: React.FC = () => {
   return (
     <div
       style={{
-        padding: 24,
-        textAlign: 'center'
+        padding: 24
       }}
     >
       <div>
-        <h1>Custom Table with External Data</h1>
         <section>
           <span>Status: {isConnected ? 'connected' : 'disconnected'}</span>
           <span style={{ marginLeft: 20 }} />

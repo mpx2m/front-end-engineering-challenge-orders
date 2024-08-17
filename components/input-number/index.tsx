@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  display: flex;
+  display: inline-flex; /* Changed from flex to inline-flex for inline display */
   align-items: center;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
   overflow: hidden;
-  width: 250px;
+  width: auto; /* Allow width to adjust based on content */
 `
 
 const InputWrapper = styled.div`
@@ -26,6 +26,7 @@ const Input = styled.input`
   flex: 1;
   text-align: right;
   padding-right: 30px;
+  width: 100%; /* Ensure input takes full width of the container */
 `
 
 const CurrencySymbol = styled.div`
