@@ -4,8 +4,8 @@ import { createStore } from 'zustand/vanilla'
 export interface State {
   isConnected: boolean
   transport: string
-  orderEvents: OrderEvent[]
-  orderEventTableData: OrderEvent[]
+  allEvents: OrderEvent[]
+  tableData: OrderEvent[]
 }
 
 export interface Actions {
@@ -18,8 +18,8 @@ export const initStore = (): State => {
   return {
     isConnected: false,
     transport: 'N/A',
-    orderEvents: [],
-    orderEventTableData: []
+    allEvents: [],
+    tableData: []
   }
 }
 
@@ -32,16 +32,16 @@ export const initializeStore = (initState: State) => {
     setTransport: transport => set({ transport }),
     updateOrderEvents: eventList => {
       set(state => {
-        const newOrderEvents = [...state.orderEvents]
+        const newAllEvents = [...state.allEvents]
         eventList.forEach(event => {
-          const index = newOrderEvents.findIndex(order => order.id === event.id)
+          const index = newAllEvents.findIndex(order => order.id === event.id)
           if (index === -1) {
-            newOrderEvents.push(event)
+            newAllEvents.push(event)
           } else {
-            newOrderEvents[index] = event
+            newAllEvents[index] = event
           }
         })
-        return { orderEvents: newOrderEvents }
+        return { allEvents: newAllEvents }
       })
     }
   }))

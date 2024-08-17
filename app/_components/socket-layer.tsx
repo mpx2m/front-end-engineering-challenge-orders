@@ -10,9 +10,9 @@ interface SocketLayerProps {
 }
 
 const SocketLayer: React.FC<SocketLayerProps> = ({ children }) => {
-  const { setIsConnected, setTransport, updateOrderEvents } = useAppStore(
-    state => state
-  )
+  const setIsConnected = useAppStore(state => state.setIsConnected)
+  const setTransport = useAppStore(state => state.setTransport)
+  const updateOrderEvents = useAppStore(state => state.updateOrderEvents)
 
   useEffect(() => {
     const onConnect = () => {

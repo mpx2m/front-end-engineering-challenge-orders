@@ -1,6 +1,6 @@
-export const dataSource = [
+export const dataSourceTest = [
   {
-    customer: 'Carla Garner',
+    customer: 'Alan',
     destination: '61109 Alan Motorway, North Corey, CA 92789',
     event_name: 'CREATED',
     id: 'd0791ce11',

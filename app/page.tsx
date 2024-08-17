@@ -6,15 +6,12 @@ import { columns } from './_data/columns'
 import { OrderEvent } from '@/lib/socket/order-event'
 
 const Page: React.FC = () => {
-  const { isConnected, transport, orderEventTableData } = useAppStore(
-    state => state
-  )
+  const isConnected = useAppStore(state => state.isConnected)
+  const transport = useAppStore(state => state.transport)
+  const tableData = useAppStore(state => state.tableData)
 
-  const countCustomers = (orderEventTableData: OrderEvent[]) => {
-    const uniqueCustomers = new Set(
-      orderEventTableData.map(order => order.customer)
-    )
-    return uniqueCustomers.size
+  const countCustomers = (tableData: OrderEvent[]) => {
+    return new Set(tableData.map(order => order.customer)).size
   }
 
   return (
@@ -31,16 +28,16 @@ const Page: React.FC = () => {
           <span style={{ marginLeft: 20 }} />
           <span>Transport: {transport}</span>
           <span style={{ marginLeft: 20 }} />
-          <span>Order Count: {orderEventTableData.length}</span>
+          <span>Order Count: {tableData.length}</span>
           <span style={{ marginLeft: 20 }} />
-          <span>Customer Count: {countCustomers(orderEventTableData)}</span>
+          <span>Customer Count: {countCustomers(tableData)}</span>
           <span style={{ marginLeft: 20 }} />
           <span>Total Amount ($): {30000}</span>
         </section>
       </div>
       <hr />
       <div style={{ marginTop: '20px' }}>
-        <Table dataSource={orderEventTableData} columns={columns} rowKey="id" />
+        <Table dataSource={tableData} columns={columns} rowKey="id" />
       </div>
     </div>
   )
