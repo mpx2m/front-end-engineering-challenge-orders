@@ -48,7 +48,7 @@ const BlankPage: React.FC = () => {
         <Title>Blank Page</Title>
         <LoremIpsum>
           This page is left blank, offering space to create something new. Enjoy
-          a serving of purple sweet potato while you're at it!
+          a serving of purple sweet potato while you are at it!
         </LoremIpsum>
         <Button
           onClick={() => router.push('/')}
