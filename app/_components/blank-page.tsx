@@ -10,11 +10,11 @@ const Container = styled.div`
   height: 500px;
   align-items: center;
   justify-items: center;
+  padding: 0 36px;
 `
 
 const TextSection = styled.div`
   grid-area: text;
-  padding-left: 40px;
 `
 
 const Title = styled.section`
