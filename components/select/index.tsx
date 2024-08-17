@@ -86,7 +86,6 @@ const ClearButton = styled.span`
   }
 `
 
-// Define the component
 interface SelectProps {
   options: string[]
   placeholder?: string
@@ -100,24 +99,20 @@ const Select: React.FC<SelectProps> = ({
   const [selected, setSelected] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Toggle dropdown menu visibility
   const toggleOpen = () => {
     set$isOpen(prevState => !prevState)
   }
 
-  // Handle option selection
   const handleSelect = (option: string) => {
     setSelected(option)
     set$isOpen(false)
   }
 
-  // Clear the selected option
   const handleClear = (event: React.MouseEvent) => {
-    event.stopPropagation() // Prevent click event from closing the dropdown
+    event.stopPropagation()
     setSelected(null)
   }
 
-  // Close dropdown menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
