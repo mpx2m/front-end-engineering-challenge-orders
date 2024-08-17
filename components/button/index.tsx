@@ -14,13 +14,16 @@ const BaseButton = styled.button<ButtonProps>`
   line-height: 1.5;
   border-radius: 50px;
   transition: background-color 0.15s ease-in-out;
-  background-color: ${props => props.$backgroundColor || theme.primary};
+  background-color: ${({ $backgroundColor }) =>
+    $backgroundColor || theme.primary};
   color: ${props => props.color || textColor.white};
   cursor: pointer;
-  border: 1px solid ${props => props.$borderColor || 'transparent'};
+  border: 1px solid
+    ${({ $backgroundColor }) => $backgroundColor || 'transparent'};
 
   &:hover {
-    background-color: ${props => props.$hoverBackgroundColor || theme.hover};
+    background-color: ${({ $backgroundColor }) =>
+      $backgroundColor || theme.hover};
   }
 `
 

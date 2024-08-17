@@ -29,7 +29,6 @@ const ItemTitle = styled.div`
 const ItemContent = styled.div`
   margin-top: 8px;
   font-size: 24px;
-  ${textColor.color1}
 `
 
 const Disconnected = styled.span`

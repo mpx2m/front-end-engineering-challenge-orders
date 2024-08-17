@@ -7,12 +7,12 @@ const MenuItem = styled(Link)<{ $isActive?: boolean }>`
   display: block;
   padding: 16px;
   color: ${textColor.white};
-  cursor: ${props => (props.$isActive ? 'default' : 'pointer')};
-  background-color: ${props =>
-    props.$isActive ? theme.highlight : 'transparent'};
+  cursor: ${({ $isActive }) => ($isActive ? 'default' : 'pointer')};
+  background-color: ${({ $isActive }) =>
+    $isActive ? theme.highlight : 'transparent'};
   &:hover {
-    background-color: ${props =>
-      props.$isActive ? theme.highlight : theme.hover};
+    background-color: ${({ $isActive }) =>
+      $isActive ? theme.highlight : theme.hover};
   }
 `
 
