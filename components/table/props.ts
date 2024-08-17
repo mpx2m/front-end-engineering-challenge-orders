@@ -2,6 +2,7 @@ export interface Column {
   title: string
   key: string
   dataIndex: string
+  render?: (value: any, record: DataItem) => React.ReactNode
 }
 
 export interface DataItem {

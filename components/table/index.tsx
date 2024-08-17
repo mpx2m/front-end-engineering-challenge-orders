@@ -73,7 +73,11 @@ const Table: React.FC<TableProps> = ({ dataSource, columns, rowKey }) => {
           {dataSource.map(data => (
             <Tr key={getRowKey(data)}>
               {columns.map(col => (
-                <Td key={col.key}>{data[col.dataIndex]}</Td>
+                <Td key={col.key}>
+                  {col.render
+                    ? col.render(data[col.dataIndex], data)
+                    : data[col.dataIndex]}
+                </Td>
               ))}
             </Tr>
           ))}

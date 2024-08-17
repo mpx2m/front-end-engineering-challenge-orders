@@ -25,13 +25,14 @@ export const columns = [
     dataIndex: 'item'
   },
   {
-    title: 'Price ($)',
+    title: 'Price',
     key: 'price',
-    dataIndex: 'price'
-  },
-  {
-    title: 'Sent at second',
-    key: 'sent_at_second',
-    dataIndex: 'sent_at_second'
+    dataIndex: 'price',
+    render: (value: number) => `$${(value / 100).toFixed(2)}`
   }
+  // {
+  //   title: 'Sent at second',
+  //   key: 'sent_at_second',
+  //   dataIndex: 'sent_at_second'
+  // }
 ]

@@ -4,6 +4,7 @@ import { useAppStore } from '@/lib/store/provider'
 import Table from '@/components/table'
 import { columns } from './_data/columns'
 import { OrderEvent } from '@/lib/socket/order-event'
+// import { dataSourceTest } from './_data/dataSourceTest' // FOR Test
 
 const Page: React.FC = () => {
   const isConnected = useAppStore(state => state.isConnected)
@@ -11,7 +12,16 @@ const Page: React.FC = () => {
   const tableData = useAppStore(state => state.tableData)
 
   const countCustomers = (tableData: OrderEvent[]) => {
-    return new Set(tableData.map(order => order.customer)).size
+    return new Set(tableData.map(event => event.customer)).size
+  }
+
+  const countTotalAmount = (tableData: OrderEvent[]) => {
+    const totalAmount = tableData.reduce(
+      (total, event) => total + event.price,
+      0
+    )
+
+    return `$${(totalAmount / 100).toFixed(2)}`
   }
 
   return (
@@ -32,7 +42,7 @@ const Page: React.FC = () => {
           <span style={{ marginLeft: 20 }} />
           <span>Customer Count: {countCustomers(tableData)}</span>
           <span style={{ marginLeft: 20 }} />
-          <span>Total Amount ($): {30000}</span>
+          <span>Total Amount: {countTotalAmount(tableData)}</span>
         </section>
       </div>
       <hr />
