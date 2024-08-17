@@ -1,21 +1,20 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-// 定义样式
 const Container = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
   overflow: hidden;
-  width: 250px; /* 调整宽度以适应美元符号 */
+  width: 250px;
 `
 
 const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   flex: 1;
-  position: relative; /* 设置相对定位，以便子元素可以绝对定位 */
+  position: relative;
 `
 
 const Input = styled.input`
@@ -37,27 +36,34 @@ const Input = styled.input`
 
 const CurrencySymbol = styled.div`
   position: absolute;
-  right: 10px; /* 可以根据需要调整 */
+  right: 10px;
   font-size: 16px;
   color: #333;
 `
 
-// 定义组件
 const InputNumber: React.FC = () => {
-  const [value, setValue] = useState<number>(0)
+  const [value, setValue] = useState<string>('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(Number(e.target.value))
+    const inputValue = e.target.value
+
+    // 正则表达式验证并格式化输入值，最多两位小数
+    const formattedValue = inputValue
+      .replace(/[^0-9.]/g, '') // 移除非数字和非小数点字符
+      .replace(/(\..*)\./g, '$1') // 只允许一个小数点
+      .replace(/^(\d*\.)(\d{2}).*$/, '$1$2') // 限制小数点后两位
+    console.log(inputValue)
+    setValue(formattedValue)
   }
 
   return (
     <Container>
       <InputWrapper>
         <Input
-          type="number"
+          type="text"
           value={value}
           onChange={handleChange}
-          aria-label="Amount"
+          placeholder="0.00"
         />
         <CurrencySymbol>$</CurrencySymbol>
       </InputWrapper>
