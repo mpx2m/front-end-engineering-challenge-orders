@@ -26,12 +26,6 @@ const Input = styled.input`
   flex: 1;
   text-align: right;
   padding-right: 30px;
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
 `
 
 const CurrencySymbol = styled.div`
@@ -47,11 +41,11 @@ const InputNumber: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
 
-    // 正则表达式验证并格式化输入值，最多两位小数
     const formattedValue = inputValue
-      .replace(/[^0-9.]/g, '') // 移除非数字和非小数点字符
-      .replace(/(\..*)\./g, '$1') // 只允许一个小数点
-      .replace(/^(\d*\.)(\d{2}).*$/, '$1$2') // 限制小数点后两位
+      .replace(/[^0-9.]/g, '') // Remove non-numeric and non-period characters
+      .replace(/(\..*)\./g, '$1') // Allow only one decimal point
+      .replace(/^(\d*\.)(\d{2}).*$/, '$1$2') // Limit to two decimal places
+
     console.log(inputValue)
     setValue(formattedValue)
   }
