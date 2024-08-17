@@ -13,7 +13,8 @@ export const bg = {
 }
 
 export const border = {
-  color1: 'rgb(226, 226, 213)'
+  color1: 'rgb(226, 226, 213)',
+  color2: 'rgb(186, 184, 175)'
 }
 
 export const textColor = {

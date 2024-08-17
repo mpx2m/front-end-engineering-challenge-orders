@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { theme, bg, textColor } from '@/components/theme'
 
 const Container = styled.div`
-  display: inline-flex; /* Changed from flex to inline-flex for inline display */
-  align-items: center;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-  overflow: hidden;
-  width: auto; /* Allow width to adjust based on content */
+  display: inline-flex;
 `
 
 const InputWrapper = styled.div`
@@ -18,22 +14,35 @@ const InputWrapper = styled.div`
 `
 
 const Input = styled.input`
+  border-radius: 8px;
   letter-spacing: 1px;
-  border: none;
-  outline: none;
   padding: 8px;
   font-size: 16px;
   flex: 1;
-  text-align: right;
   padding-right: 30px;
-  width: 100%; /* Ensure input takes full width of the container */
+  border: 1px solid ${bg.color4};
+  background-color: transparent;
+
+  &::placeholder {
+    color: ${textColor.color2};
+  }
+
+  &:hover {
+    background-color: ${bg.color2};
+  }
+
+  &:focus {
+    background-color: transparent;
+    border: 2px solid ${theme.hover};
+    outline: none;
+  }
 `
 
 const CurrencySymbol = styled.div`
   position: absolute;
   right: 10px;
   font-size: 16px;
-  color: #333;
+  color: ${textColor.color2};
 `
 
 const InputNumber: React.FC = () => {
