@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import styled from 'styled-components'
 import { theme, border, textColor, bg } from '@/components/theme'
 
@@ -38,9 +37,12 @@ const CurrencySymbol = styled.div`
   color: ${textColor.color2};
 `
 
-const InputNumber: React.FC = () => {
-  const [value, setValue] = useState<string>('')
+interface InputNumberProps {
+  value: string
+  onChange: (value: string) => void
+}
 
+const InputNumber: React.FC<InputNumberProps> = ({ value, onChange }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
 
@@ -49,8 +51,7 @@ const InputNumber: React.FC = () => {
       .replace(/(\..*)\./g, '$1') // Allow only one decimal point
       .replace(/^(\d*\.)(\d{2}).*$/, '$1$2') // Limit to two decimal places
 
-    console.log(inputValue)
-    setValue(formattedValue)
+    onChange(formattedValue)
   }
 
   return (
