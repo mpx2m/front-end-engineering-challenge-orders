@@ -4,7 +4,7 @@ import { useAppStore } from '@/lib/store/provider'
 import Table from '@/components/table'
 import columns from './../_data/columns'
 
-const TableArea: React.FC = () => {
+const OrderEventTable: React.FC = () => {
   const tableData = useAppStore(state => state.tableData)
   // const allEvents = useAppStore(state => state.allEvents)
 
@@ -15,4 +15,4 @@ const TableArea: React.FC = () => {
   )
 }
 
-export default TableArea
+export default OrderEventTable

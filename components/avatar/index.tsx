@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { theme, textColor } from '@/components/theme'
 import { AvatarProps } from './props'
 
-const AvatarContainer = styled.div`
+const AvatarWrapper = styled.div`
   padding: 6px 10px;
   cursor: pointer;
   &:hover {
@@ -31,10 +31,10 @@ const AvatarName = styled.span`
 
 const Avatar: React.FC<AvatarProps> = ({ name, avatarColor }) => {
   return (
-    <AvatarContainer>
+    <AvatarWrapper>
       <AvatarBody color={avatarColor}>{name[0].toUpperCase()}</AvatarBody>
       <AvatarName>{name}</AvatarName>
-    </AvatarContainer>
+    </AvatarWrapper>
   )
 }
 

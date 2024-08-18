@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import StatusPanel from './_components/status-panel'
 import { bg } from '@/components/theme'
 import Forms from './_components/forms'
-import TableArea from './_components/table-area'
+import OrderEventTable from './_components/order-event-table'
 
-const Content = styled.div`
+const OrderEventContent = styled.div`
   margin-top: 16px;
   padding: 24px;
   background: ${bg.color1};
@@ -17,10 +17,10 @@ const Page: React.FC = () => {
   return (
     <>
       <StatusPanel />
-      <Content>
+      <OrderEventContent>
         <Forms />
-        <TableArea />
-      </Content>
+        <OrderEventTable />
+      </OrderEventContent>
     </>
   )
 }
