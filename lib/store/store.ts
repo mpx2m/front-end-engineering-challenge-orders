@@ -37,7 +37,7 @@ export const initStore = (): State => {
 export interface StoreInterface extends State, Actions {}
 
 export const initializeStore = (initState: State) => {
-  return createStore<StoreInterface>()((set, get) => ({
+  return createStore<StoreInterface>()(set => ({
     ...initState,
     setIsConnected: isConnected => set({ isConnected }),
     setTransport: transport => set({ transport }),
