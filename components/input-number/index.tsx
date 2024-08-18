@@ -29,6 +29,7 @@ const Input = styled.input`
     background-color: transparent;
     border: 2px solid ${theme.hover};
     outline: none;
+    margin: -1px;
   }
 
   &::-webkit-inner-spin-button,

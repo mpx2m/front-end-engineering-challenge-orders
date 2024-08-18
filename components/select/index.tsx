@@ -17,6 +17,7 @@ const SelectButton = styled.div<{ $isOpen: boolean }>`
   border-radius: 8px;
   border: ${({ $isOpen }) =>
     $isOpen ? `2px solid ${theme.hover}` : `1px solid ${border.color2}`};
+  margin: -1px;
   cursor: pointer;
 
   &:hover {

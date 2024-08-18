@@ -8,7 +8,7 @@ interface ButtonProps {
   color?: string
 }
 
-const BaseButton = styled.button<ButtonProps>`
+const Button = styled.button<ButtonProps>`
   display: inline-block;
   padding: 0.375rem 0.75rem;
   line-height: 1.5;
@@ -18,13 +18,12 @@ const BaseButton = styled.button<ButtonProps>`
     $backgroundColor || theme.primary};
   color: ${props => props.color || textColor.white};
   cursor: pointer;
-  border: 1px solid
-    ${({ $backgroundColor }) => $backgroundColor || 'transparent'};
+  border: 1px solid ${({ $borderColor }) => $borderColor || 'transparent'};
 
   &:hover {
-    background-color: ${({ $backgroundColor }) =>
-      $backgroundColor || theme.hover};
+    background-color: ${({ $hoverBackgroundColor }) =>
+      $hoverBackgroundColor || theme.hover};
   }
 `
 
-export default BaseButton
+export default Button
