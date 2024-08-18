@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components'
 import { theme, border, textColor, bg } from '@/components/theme'
 
@@ -29,43 +30,47 @@ const Input = styled.input`
     border: 2px solid ${theme.hover};
     outline: none;
   }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `
 
 const CurrencySymbol = styled.div`
   position: absolute;
   right: 10px;
   color: ${textColor.color2};
+  pointer-events: none;
 `
 
 interface InputNumberProps {
-  value?: number
-  onChange: (value: number) => void
+  value: string
+  onChange: (value: string) => void
 }
 
 const InputNumber: React.FC<InputNumberProps> = ({ value, onChange }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
-
-    const formattedValue = inputValue
-      .replace(/[^0-9.]/g, '') // Remove non-numeric and non-period characters
-      .replace(/(\..*)\./g, '$1') // Allow only one decimal point
-      .replace(/^(\d*\.)(\d{2}).*$/, '$1$2') // Limit to two decimal places
-
     console.log('inputValue', inputValue, typeof inputValue)
-    console.log('formattedValue', formattedValue, typeof formattedValue)
-    console.log('number', value, typeof value)
 
-    const numericValue = parseFloat(formattedValue) || 0
-    onChange(numericValue)
+    const regex = /^\d*\.?\d{0,2}$/
+    if (regex.test(inputValue)) {
+      onChange(inputValue)
+    } else {
+      onChange('')
+    }
   }
 
   return (
     <InputWrapper>
       <Input
-        type="text"
-        value={undefined}
+        type="number"
+        value={value}
         onChange={handleChange}
         placeholder="0.00"
+        min={0}
       />
       <CurrencySymbol>$</CurrencySymbol>
     </InputWrapper>

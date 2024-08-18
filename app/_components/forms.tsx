@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import styled from 'styled-components'
-import InputNumber2 from '@/components/input-number/index2'
+import InputNumber from '@/components/input-number'
 
 const Container = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ const Forms: React.FC = () => {
       <Title>Order Events</Title>
       <FormGroup>
         <Spacer />
-        <InputNumber2 value={value} onChange={setValue} />
+        <InputNumber value={value} onChange={setValue} />
       </FormGroup>
     </Container>
   )
