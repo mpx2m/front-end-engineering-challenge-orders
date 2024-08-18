@@ -38,8 +38,8 @@ const CurrencySymbol = styled.div`
 `
 
 interface InputNumberProps {
-  value: string
-  onChange: (value: string) => void
+  value?: number
+  onChange: (value: number) => void
 }
 
 const InputNumber: React.FC<InputNumberProps> = ({ value, onChange }) => {
@@ -51,14 +51,19 @@ const InputNumber: React.FC<InputNumberProps> = ({ value, onChange }) => {
       .replace(/(\..*)\./g, '$1') // Allow only one decimal point
       .replace(/^(\d*\.)(\d{2}).*$/, '$1$2') // Limit to two decimal places
 
-    onChange(formattedValue)
+    console.log('inputValue', inputValue, typeof inputValue)
+    console.log('formattedValue', formattedValue, typeof formattedValue)
+    console.log('number', value, typeof value)
+
+    const numericValue = parseFloat(formattedValue) || 0
+    onChange(numericValue)
   }
 
   return (
     <InputWrapper>
       <Input
         type="text"
-        value={value}
+        value={undefined}
         onChange={handleChange}
         placeholder="0.00"
       />

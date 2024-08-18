@@ -27,8 +27,8 @@ const Spacer = styled.span`
 const Forms: React.FC = () => {
   // const options = ['Option 1', 'Option 2', 'Option 3']
 
-  const [value, setValue] = useState(0.0)
-  const [value2, setValue2] = useState('')
+  // const [value, setValue] = useState(undefined)
+  const [value2, setValue2] = useState(0)
 
   return (
     <Container>
@@ -37,7 +37,7 @@ const Forms: React.FC = () => {
         {/* <Select options={options} placeholder="Select an option" /> */}
         <Spacer />
         <InputNumber value={value2} onChange={setValue2} />
-        <InputNumber2 value={value} onChange={setValue} />
+        {/* <InputNumber2 value={value} onChange={setValue} /> */}
       </FormGroup>
     </Container>
   )

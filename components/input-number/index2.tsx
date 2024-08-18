@@ -42,6 +42,7 @@ const CurrencySymbol = styled.div`
   position: absolute;
   right: 10px;
   color: ${textColor.color2};
+  pointer-events: none;
 `
 
 interface InputNumberProps {
@@ -51,12 +52,13 @@ interface InputNumberProps {
 
 const InputNumber: React.FC<InputNumberProps> = ({ value, onChange }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value
+    const inputValue = e.target.valueAsNumber
 
-    // Remove non-numeric characters except decimal point
-    const formattedValue = parseFloat(inputValue)
+    const formattedValue = parseFloat(inputValue.toFixed(2))
 
-    // Only update value if it's a valid number
+    console.log('inputValue', inputValue, typeof inputValue)
+    console.log('formattedValue', formattedValue, typeof formattedValue)
+
     if (!isNaN(formattedValue)) {
       onChange(formattedValue)
     }
@@ -66,10 +68,11 @@ const InputNumber: React.FC<InputNumberProps> = ({ value, onChange }) => {
     <InputWrapper>
       <Input
         type="number"
-        value={value || ''}
+        value={value || undefined}
         onChange={handleChange}
         placeholder="0.00"
-        step="0.01" // Allows decimal numbers with two decimal places
+        step="0.01"
+        min={0}
       />
       <CurrencySymbol>$</CurrencySymbol>
     </InputWrapper>
