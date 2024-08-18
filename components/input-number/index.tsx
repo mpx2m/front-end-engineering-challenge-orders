@@ -11,7 +11,6 @@ const InputWrapper = styled.div`
 
 const Input = styled.input`
   border-radius: 8px;
-  letter-spacing: 1px;
   padding: 8px;
   padding-left: 12px;
   padding-right: 20px;
