@@ -53,13 +53,11 @@ interface InputNumberProps {
 const InputNumber: React.FC<InputNumberProps> = ({ value, onChange }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
-    console.log('inputValue', inputValue, typeof inputValue)
+    console.log('inputValue', inputValue)
 
     const regex = /^\d*\.?\d{0,2}$/
     if (regex.test(inputValue)) {
       onChange(inputValue)
-    } else {
-      onChange('')
     }
   }
 
