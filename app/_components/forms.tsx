@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { useAppStore } from '@/lib/store/provider'
 import InputNumber from '@/components/input-number'
 import Select from '@/components/select'
-import { useState } from 'react'
 
 const Container = styled.div`
   display: flex;
@@ -26,15 +25,10 @@ const Spacer = styled.span`
 
 const Forms: React.FC = () => {
   const inputDollars = useAppStore(state => state.inputDollars)
+  const selectedEvent = useAppStore(state => state.selectedEvent)
+  const eventOptions = useAppStore(state => state.eventOptions)
   const setInputDollars = useAppStore(state => state.setInputDollars)
-
-  const [selected, setSelected] = useState('')
-
-  const handleSelectChange = (value: string) => {
-    setSelected(value)
-  }
-
-  const options: string[] = ['Option 1', 'Option 2']
+  const setSelectedEvent = useAppStore(state => state.setSelectedEvent)
 
   return (
     <Container>
@@ -42,9 +36,9 @@ const Forms: React.FC = () => {
       <FormGroup>
         <Select
           placeholder="Event"
-          options={options}
-          value={selected}
-          onChange={handleSelectChange}
+          options={eventOptions}
+          value={selectedEvent}
+          onChange={setSelectedEvent}
         />
         <Spacer />
         <InputNumber value={inputDollars} onChange={setInputDollars} />

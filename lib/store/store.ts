@@ -5,6 +5,8 @@ export interface State {
   isConnected: boolean
   transport: string
   inputDollars: string
+  selectedEvent: string
+  eventOptions: string[]
   allEventsUpdatedAt: number
   allEvents: OrderEvent[]
   tableData: OrderEvent[]
@@ -14,6 +16,7 @@ export interface Actions {
   setIsConnected: (isConnected: boolean) => void
   setTransport: (transport: string) => void
   setInputDollars: (inputDollars: string) => void
+  setSelectedEvent: (selectedEvent: string) => void
   updateAllEventsUpdatedAt: (time: number) => void
   updateAllEvents: (eventList: OrderEvent[]) => void
   updateTableData: () => void
@@ -24,6 +27,8 @@ export const initStore = (): State => {
     isConnected: false,
     transport: 'N/A',
     inputDollars: '',
+    selectedEvent: '',
+    eventOptions: [],
     allEventsUpdatedAt: 0,
     allEvents: [],
     tableData: []
@@ -38,10 +43,13 @@ export const initializeStore = (initState: State) => {
     setIsConnected: isConnected => set({ isConnected }),
     setTransport: transport => set({ transport }),
     setInputDollars: inputDollars => set({ inputDollars }),
+    setSelectedEvent: selectedEvent => set({ selectedEvent }),
     updateAllEventsUpdatedAt: time => set({ allEventsUpdatedAt: time }),
     updateAllEvents: eventList => {
       set(state => {
         const allEvents = [...state.allEvents]
+        const eventOptions = [...state.eventOptions]
+
         eventList.forEach(event => {
           const index = allEvents.findIndex(({ id }) => id === event.id)
           if (index === -1) {
@@ -49,8 +57,13 @@ export const initializeStore = (initState: State) => {
           } else {
             allEvents[index] = event
           }
+
+          if (!eventOptions.includes(event.event_name)) {
+            eventOptions.push(event.event_name)
+          }
         })
-        return { allEvents }
+
+        return { allEvents, eventOptions }
       })
 
       get().updateAllEventsUpdatedAt(new Date().getTime())
