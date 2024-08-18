@@ -1,7 +1,9 @@
 'use client'
 
+import { useState } from 'react'
 import styled from 'styled-components'
 import InputNumber from '@/components/input-number'
+import InputNumber2 from '@/components/input-number/index2'
 // import Select from '@/components/select'
 
 const Container = styled.div`
@@ -25,13 +27,17 @@ const Spacer = styled.span`
 const Forms: React.FC = () => {
   // const options = ['Option 1', 'Option 2', 'Option 3']
 
+  const [value, setValue] = useState(0.0)
+  const [value2, setValue2] = useState('')
+
   return (
     <Container>
       <Title>Order Events</Title>
       <FormGroup>
         {/* <Select options={options} placeholder="Select an option" /> */}
         <Spacer />
-        <InputNumber />
+        <InputNumber value={value2} onChange={setValue2} />
+        <InputNumber2 value={value} onChange={setValue} />
       </FormGroup>
     </Container>
   )

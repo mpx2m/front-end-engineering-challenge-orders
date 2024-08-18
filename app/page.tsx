@@ -7,7 +7,7 @@ import Forms from './_components/forms'
 import TableArea from './_components/table-area'
 
 const Content = styled.div`
-  margin-top: 24px;
+  margin-top: 16px;
   padding: 24px;
   background: ${bg.color1};
   min-height: 400px;
