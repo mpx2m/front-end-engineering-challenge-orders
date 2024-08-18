@@ -41,7 +41,11 @@ const Forms: React.FC = () => {
           onChange={setSelectedEvent}
         />
         <Spacer />
-        <InputNumber value={inputDollars} onChange={setInputDollars} />
+        <InputNumber
+          value={inputDollars}
+          onChange={setInputDollars}
+          debounce={true}
+        />
       </FormGroup>
     </Container>
   )

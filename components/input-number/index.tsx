@@ -1,5 +1,6 @@
-import React from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
+import debounceFn from '@/lib/debounce'
 import { theme, border, textColor, bg } from '@/components/theme'
 
 const InputWrapper = styled.div`
@@ -49,15 +50,29 @@ const CurrencySymbol = styled.div`
 interface InputNumberProps {
   value: string
   onChange: (value: string) => void
+  debounce?: boolean
+  debounceDelay?: number
 }
 
-const InputNumber: React.FC<InputNumberProps> = ({ value, onChange }) => {
+const InputNumber: React.FC<InputNumberProps> = ({
+  value,
+  onChange,
+  debounce = false,
+  debounceDelay = 300
+}) => {
+  const [internalValue, setInternalValue] = useState(value)
+
+  const debouncedOnChange = debounce
+    ? debounceFn((value: string) => onChange(value), debounceDelay)
+    : (value: string) => onChange(value)
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
 
     const regex = /^\d*\.?\d{0,2}$/
     if (regex.test(inputValue)) {
-      onChange(inputValue)
+      setInternalValue(inputValue)
+      debouncedOnChange(inputValue)
     }
   }
 
@@ -65,7 +80,7 @@ const InputNumber: React.FC<InputNumberProps> = ({ value, onChange }) => {
     <InputWrapper>
       <Input
         type="number"
-        value={value}
+        value={internalValue}
         onChange={handleChange}
         placeholder="0.00"
         min={0}
