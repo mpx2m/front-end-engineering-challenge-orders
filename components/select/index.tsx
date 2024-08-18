@@ -108,8 +108,12 @@ const Select: React.FC<SelectProps> = ({
   }
 
   const handleSelect = (option: string) => {
-    onChange(option)
     setIsOpen(false)
+    if (option === value) {
+      return
+    }
+
+    onChange(option)
   }
 
   const handleClear = (event: React.MouseEvent) => {
