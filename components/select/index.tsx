@@ -8,7 +8,7 @@ const Container = styled.div`
   width: 200px;
 `
 
-const SelectButton = styled.div`
+const SelectButton = styled.div<{ $isOpen: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,6 +19,15 @@ const SelectButton = styled.div`
   font-size: 16px;
   color: #333;
   position: relative;
+
+  &:hover {
+    background-color: ${({ $isOpen }) => ($isOpen ? 'transparent' : bg.color2)};
+  }
+
+  border: ${({ $isOpen }) =>
+    $isOpen ? `2px solid ${theme.hover}` : `1px solid  ${border.color2}`};
+
+  /* background-color: ${({ $isOpen }) => ($isOpen ? 'black' : 'gray')}; */
 `
 
 const OptionsContainer = styled.div<{ $isOpen: boolean }>`
@@ -136,7 +145,7 @@ const Select: React.FC<SelectProps> = ({
 
   return (
     <Container ref={containerRef}>
-      <SelectButton onClick={toggleOpen}>
+      <SelectButton onClick={toggleOpen} $isOpen={isOpen}>
         {value || <Placeholder>{placeholder}</Placeholder>}
         {value && <ClearButton onClick={handleClear}>✕</ClearButton>}
         <Arrow $isVisible={!value}>{isOpen ? 'ᐱ' : 'ᐯ'}</Arrow>
