@@ -40,7 +40,7 @@ const ImageSection = styled.div`
   background-position: center;
 `
 
-const BlankPage: React.FC = () => {
+const Blank: React.FC = () => {
   const router = useRouter()
 
   return (
@@ -67,4 +67,4 @@ const BlankPage: React.FC = () => {
   )
 }
 
-export default BlankPage
+export default Blank

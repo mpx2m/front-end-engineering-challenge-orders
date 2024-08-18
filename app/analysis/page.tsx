@@ -1,9 +1,9 @@
 'use client'
 
-import BlankPage from '../_components/blank-page'
+import Blank from '@/components/blank'
 
 const Page: React.FC = () => {
-  return <BlankPage />
+  return <Blank />
 }
 
 export default Page

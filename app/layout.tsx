@@ -4,8 +4,8 @@ import { StoreProvider } from '@/lib/store/provider'
 import { Inter } from 'next/font/google'
 import 'normalize.css/normalize.css'
 import './globals.css'
-import DashBoardLayout from './_components/dashboard-layout'
-import SocketLayer from './_components/socket-layer'
+import DashBoardLayout from './_components-layout/dashboard-layout'
+import SocketLayer from './_components-layout/socket-layer'
 
 const inter = Inter({ subsets: ['latin'], preload: false })
 
