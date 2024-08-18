@@ -21,7 +21,7 @@ const Title = styled.div`
 const FormGroup = styled.div``
 
 const Spacer = styled.span`
-  margin-right: 16px;
+  margin-right: 20px;
 `
 
 const Forms: React.FC = () => {
@@ -34,21 +34,16 @@ const Forms: React.FC = () => {
     setSelected(value)
   }
 
-  const handleClear = () => {
-    setSelected('')
-  }
-
-  const options: string[] = ['handleClear', 'handleClear2']
+  const options: string[] = ['Option 1', 'Option 2']
 
   return (
     <Container>
       <Title>Order Events</Title>
       <FormGroup>
         <Select
-          options={options}
           placeholder="Event"
+          options={options}
           value={selected}
-          onClear={handleClear}
           onChange={handleSelectChange}
         />
         <Spacer />

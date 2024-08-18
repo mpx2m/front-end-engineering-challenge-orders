@@ -92,15 +92,13 @@ interface SelectProps {
   onChange: (value: string) => void
   options: string[]
   placeholder?: string
-  onClear?: () => void
 }
 
 const Select: React.FC<SelectProps> = ({
   value,
   onChange,
   options,
-  placeholder = 'Select an option',
-  onClear
+  placeholder = 'Select an option'
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -117,10 +115,7 @@ const Select: React.FC<SelectProps> = ({
   const handleClear = (event: React.MouseEvent) => {
     event.stopPropagation()
     onChange('')
-    setIsOpen(false) // Ensure the dropdown closes when clearing the value
-    if (onClear) {
-      onClear()
-    }
+    setIsOpen(false)
   }
 
   useEffect(() => {
