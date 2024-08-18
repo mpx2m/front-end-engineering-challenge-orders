@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import { theme } from '../theme'
+import { theme, border, textColor, bg } from '@/components/theme'
 
 const Container = styled.div`
   display: inline-block;
@@ -13,9 +13,8 @@ const SelectButton = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 8px;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid ${border.color2};
   cursor: pointer;
   font-size: 16px;
   color: #333;
@@ -27,13 +26,13 @@ const OptionsContainer = styled.div<{ $isOpen: boolean }>`
   top: 100%;
   left: 0;
   width: 100%;
-  border: 1px solid #d9d9d9;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: ${bg.white};
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   max-height: 200px;
   overflow-y: auto;
   display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
+  z-index: 100;
 `
 
 const Option = styled.div<{ $isSelected: boolean }>`
@@ -54,12 +53,12 @@ const Option = styled.div<{ $isSelected: boolean }>`
 `
 
 const Placeholder = styled.span`
-  color: #999;
+  color: ${textColor.color2};
 `
 
 const Arrow = styled.span<{ $isVisible: boolean }>`
-  font-size: 10px;
-  color: #333;
+  font-size: 12px;
+  color: ${textColor.color2};
   visibility: ${({ $isVisible }) => ($isVisible ? 'visible' : 'hidden')};
 `
 
@@ -87,30 +86,38 @@ const ClearButton = styled.span`
 `
 
 interface SelectProps {
+  value: string
+  onChange: (value: string) => void
   options: string[]
   placeholder?: string
+  onClear?: () => void
 }
 
 const Select: React.FC<SelectProps> = ({
+  value,
+  onChange,
   options,
-  placeholder = 'Select an option'
+  placeholder = 'Select an option',
+  onClear
 }) => {
-  const [$isOpen, set$isOpen] = useState<boolean>(false)
-  const [selected, setSelected] = useState<string | null>(null)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
   const toggleOpen = () => {
-    set$isOpen(prevState => !prevState)
+    setIsOpen(prevState => !prevState)
   }
 
   const handleSelect = (option: string) => {
-    setSelected(option)
-    set$isOpen(false)
+    onChange(option)
+    setIsOpen(false)
   }
 
   const handleClear = (event: React.MouseEvent) => {
     event.stopPropagation()
-    setSelected(null)
+    onChange('')
+    if (onClear) {
+      onClear()
+    }
   }
 
   useEffect(() => {
@@ -119,7 +126,7 @@ const Select: React.FC<SelectProps> = ({
         containerRef.current &&
         !containerRef.current.contains(event.target as Node)
       ) {
-        set$isOpen(false)
+        setIsOpen(false)
       }
     }
 
@@ -130,16 +137,16 @@ const Select: React.FC<SelectProps> = ({
   return (
     <Container ref={containerRef}>
       <SelectButton onClick={toggleOpen}>
-        {selected || <Placeholder>{placeholder}</Placeholder>}
-        {selected && <ClearButton onClick={handleClear}>✕</ClearButton>}
-        <Arrow $isVisible={!selected}>{$isOpen ? 'ᐱ' : 'ᐯ'}</Arrow>
+        {value || <Placeholder>{placeholder}</Placeholder>}
+        {value && <ClearButton onClick={handleClear}>✕</ClearButton>}
+        <Arrow $isVisible={!value}>{isOpen ? 'ᐱ' : 'ᐯ'}</Arrow>
       </SelectButton>
-      <OptionsContainer $isOpen={$isOpen}>
+      <OptionsContainer $isOpen={isOpen}>
         {options.map(option => (
           <Option
             key={option}
             onClick={() => handleSelect(option)}
-            $isSelected={option === selected}
+            $isSelected={option === value}
           >
             {option}
           </Option>

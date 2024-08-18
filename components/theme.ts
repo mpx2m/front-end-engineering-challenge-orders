@@ -6,6 +6,7 @@ export const theme = {
 }
 
 export const bg = {
+  white: 'white',
   color1: 'rgb(255, 254, 246)',
   color2: 'rgb(248, 246, 236)',
   color3: 'rgb(242, 240, 228)',
