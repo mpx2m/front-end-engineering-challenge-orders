@@ -1,5 +1,5 @@
-import { OrderEvent } from '@/lib/socket/order-event'
 import { createStore } from 'zustand/vanilla'
+import { OrderEvent } from '@/lib/socket/order-event'
 
 export interface State {
   isConnected: boolean
@@ -70,15 +70,26 @@ export const initializeStore = (initState: State) => {
     },
     updateTableData: () => {
       set(state => {
-        if (state.inputDollars === '') {
-          return { tableData: state.allEvents }
-        } else {
-          const cents = parseFloat(state.inputDollars) * 100
-          const tableData = state.allEvents.filter(
-            event => event.price === cents
-          )
-          return { tableData: tableData }
+        const { inputDollars, selectedEvent, allEvents } = state
+
+        if (inputDollars === '' && selectedEvent === '') {
+          return { tableData: allEvents }
         }
+
+        const cents =
+          inputDollars !== ''
+            ? Math.round(parseFloat(inputDollars) * 100)
+            : null
+
+        const tableData = allEvents.filter(event => {
+          const matchPrice = cents === null || event.price === cents
+          const matchEvent =
+            selectedEvent === '' || event.event_name === selectedEvent
+
+          return matchPrice && matchEvent
+        })
+
+        return { tableData }
       })
     }
   }))
