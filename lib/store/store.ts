@@ -63,7 +63,11 @@ export const initializeStore = (initState: State) => {
           }
         })
 
-        return { allEvents, eventOptions }
+        if (eventOptions.length !== state.eventOptions.length) {
+          return { allEvents, eventOptions }
+        }
+
+        return { allEvents }
       })
 
       get().updateAllEventsUpdatedAt(new Date().getTime())
