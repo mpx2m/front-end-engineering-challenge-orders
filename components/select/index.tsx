@@ -74,12 +74,12 @@ const ClearButton = styled.span`
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 50%;
   background-color: transparent;
   transition: background-color 0.2s ease;
+  text-align: center; /* Center text horizontally */
+  line-height: 20px; /* Center text vertically */
+
   &:hover {
     color: ${textColor.white};
     background-color: ${textColor.gray2};
