@@ -46,29 +46,34 @@ const CurrencySymbol = styled.div`
 `
 
 interface InputNumberProps {
-  value: number
-  onChange: (value: number) => void
+  value: string
+  onChange: (value: string) => void
 }
 
 const InputNumber: React.FC<InputNumberProps> = ({ value, onChange }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.valueAsNumber
-
     const formattedValue = parseFloat(inputValue.toFixed(2))
 
-    console.log('inputValue', inputValue, typeof inputValue)
-    console.log('formattedValue', formattedValue, typeof formattedValue)
+    console.log(
+      inputValue,
+      typeof inputValue,
+      formattedValue,
+      typeof formattedValue
+    )
 
     if (!isNaN(formattedValue)) {
-      onChange(formattedValue)
+      onChange('')
     }
+
+    onChange(formattedValue + '')
   }
 
   return (
     <InputWrapper>
       <Input
         type="number"
-        value={value || undefined}
+        value={value}
         onChange={handleChange}
         placeholder="0.00"
         step="0.01"

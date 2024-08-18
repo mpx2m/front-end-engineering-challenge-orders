@@ -2,9 +2,7 @@
 
 import { useState } from 'react'
 import styled from 'styled-components'
-import InputNumber from '@/components/input-number'
 import InputNumber2 from '@/components/input-number/index2'
-// import Select from '@/components/select'
 
 const Container = styled.div`
   display: flex;
@@ -25,19 +23,14 @@ const Spacer = styled.span`
 `
 
 const Forms: React.FC = () => {
-  // const options = ['Option 1', 'Option 2', 'Option 3']
-
-  // const [value, setValue] = useState(undefined)
-  const [value2, setValue2] = useState(0)
+  const [value, setValue] = useState('')
 
   return (
     <Container>
       <Title>Order Events</Title>
       <FormGroup>
-        {/* <Select options={options} placeholder="Select an option" /> */}
         <Spacer />
-        <InputNumber value={value2} onChange={setValue2} />
-        {/* <InputNumber2 value={value} onChange={setValue} /> */}
+        <InputNumber2 value={value} onChange={setValue} />
       </FormGroup>
     </Container>
   )
