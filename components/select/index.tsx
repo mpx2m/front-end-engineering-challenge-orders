@@ -2,13 +2,14 @@ import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { theme, border, textColor, bg, boxShadow } from '@/components/theme'
 
-const Container = styled.div`
+const SelectWrapper = styled.div`
   display: inline-block;
   position: relative;
   width: 200px;
 `
 
 const SelectButton = styled.div<{ $isOpen: boolean }>`
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,8 +18,6 @@ const SelectButton = styled.div<{ $isOpen: boolean }>`
   border: ${({ $isOpen }) =>
     $isOpen ? `2px solid ${theme.hover}` : `1px solid ${border.color2}`};
   cursor: pointer;
-  font-size: 16px;
-  position: relative;
 
   &:hover {
     background-color: ${({ $isOpen }) => ($isOpen ? 'transparent' : bg.color2)};
@@ -27,31 +26,30 @@ const SelectButton = styled.div<{ $isOpen: boolean }>`
 
 const OptionsContainer = styled.div<{ $isOpen: boolean }>`
   position: absolute;
+  z-index: 100;
   top: 100%;
   left: 0;
   width: 100%;
-  border-radius: 4px;
+  border-radius: 2px;
   background-color: ${bg.white};
   box-shadow: 0 2px 8px ${boxShadow.shadow1};
   max-height: 200px;
   overflow-y: auto;
   display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
-  z-index: 100;
 `
 
 const Option = styled.div<{ $isSelected: boolean }>`
-  padding: 10px;
   cursor: pointer;
+  padding: 10px;
   font-weight: ${({ $isSelected }) => ($isSelected ? '500' : 'normal')};
   background-color: ${({ $isSelected }) =>
     $isSelected ? theme.highlight2 : 'transparent'};
-  text-align: left;
-  transition: background-color 0.3s ease;
 
   &:hover {
     background-color: ${({ $isSelected }) =>
       $isSelected ? theme.highlight2 : theme.primary2};
   }
+  transition: background-color 0.3s ease;
 `
 
 const Placeholder = styled.span`
@@ -66,10 +64,10 @@ const Arrow = styled.span<{ $isVisible: boolean }>`
 `
 
 const ClearButton = styled.span`
+  cursor: pointer;
   font-size: 14px;
   font-weight: 900;
   color: ${textColor.color2};
-  cursor: pointer;
   position: absolute;
   right: 4px;
   top: 50%;
@@ -139,7 +137,7 @@ const Select: React.FC<SelectProps> = ({
   }, [])
 
   return (
-    <Container ref={containerRef}>
+    <SelectWrapper ref={containerRef}>
       <SelectButton onClick={toggleOpen} $isOpen={isOpen}>
         {value || <Placeholder>{placeholder}</Placeholder>}
         {value && <ClearButton onClick={handleClear}>✕</ClearButton>}
@@ -156,7 +154,7 @@ const Select: React.FC<SelectProps> = ({
           </Option>
         ))}
       </OptionsContainer>
-    </Container>
+    </SelectWrapper>
   )
 }
 
