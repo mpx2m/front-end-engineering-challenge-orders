@@ -4,6 +4,7 @@ import { createStore } from 'zustand/vanilla'
 export interface State {
   isConnected: boolean
   transport: string
+  dollarInputValue: string
   allEventsUpdatedAt: number
   allEvents: OrderEvent[]
   tableData: OrderEvent[]
@@ -12,6 +13,7 @@ export interface State {
 export interface Actions {
   setIsConnected: (isConnected: boolean) => void
   setTransport: (transport: string) => void
+  setDollarInputValue: (value: string) => void
   updateAllEventsUpdatedAt: (time: number) => void
   updateAllEvents: (eventList: OrderEvent[]) => void
 }
@@ -20,6 +22,7 @@ export const initStore = (): State => {
   return {
     isConnected: false,
     transport: 'N/A',
+    dollarInputValue: '',
     allEventsUpdatedAt: 0,
     allEvents: [],
     tableData: []
@@ -33,6 +36,7 @@ export const initializeStore = (initState: State) => {
     ...initState,
     setIsConnected: isConnected => set({ isConnected }),
     setTransport: transport => set({ transport }),
+    setDollarInputValue: value => set({ dollarInputValue: value }),
     updateAllEventsUpdatedAt: time => set({ allEventsUpdatedAt: time }),
     updateAllEvents: eventList => {
       set(state => {

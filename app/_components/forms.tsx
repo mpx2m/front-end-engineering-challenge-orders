@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import styled from 'styled-components'
+import { useAppStore } from '@/lib/store/provider'
 import InputNumber from '@/components/input-number'
 
 const Container = styled.div`
@@ -23,14 +23,15 @@ const Spacer = styled.span`
 `
 
 const Forms: React.FC = () => {
-  const [value, setValue] = useState('')
+  const dollarInputValue = useAppStore(state => state.dollarInputValue)
+  const setDollarInputValue = useAppStore(state => state.setDollarInputValue)
 
   return (
     <Container>
       <Title>Order Events</Title>
       <FormGroup>
         <Spacer />
-        <InputNumber value={value} onChange={setValue} />
+        <InputNumber value={dollarInputValue} onChange={setDollarInputValue} />
       </FormGroup>
     </Container>
   )
