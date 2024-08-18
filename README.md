@@ -23,6 +23,7 @@ pnpm i
 
 ```bash
 # start in dev mode, bad performance as using development build of React
+# http://localhost:3000
 pnpm dev
 ```
 
@@ -31,6 +32,7 @@ pnpm dev
 pnpm build
 
 # start in prod mode (recommended), due to better performance for preview
+# http://localhost:3000
 pnpm start
 ```
 
