@@ -4,7 +4,7 @@ import { createStore } from 'zustand/vanilla'
 export interface State {
   isConnected: boolean
   transport: string
-  dollarInputValue: string
+  inputDollars: string
   allEventsUpdatedAt: number
   allEvents: OrderEvent[]
   tableData: OrderEvent[]
@@ -13,16 +13,17 @@ export interface State {
 export interface Actions {
   setIsConnected: (isConnected: boolean) => void
   setTransport: (transport: string) => void
-  setDollarInputValue: (value: string) => void
+  setInputDollars: (inputDollars: string) => void
   updateAllEventsUpdatedAt: (time: number) => void
   updateAllEvents: (eventList: OrderEvent[]) => void
+  updateTableData: () => void
 }
 
 export const initStore = (): State => {
   return {
     isConnected: false,
     transport: 'N/A',
-    dollarInputValue: '',
+    inputDollars: '',
     allEventsUpdatedAt: 0,
     allEvents: [],
     tableData: []
@@ -36,7 +37,7 @@ export const initializeStore = (initState: State) => {
     ...initState,
     setIsConnected: isConnected => set({ isConnected }),
     setTransport: transport => set({ transport }),
-    setDollarInputValue: value => set({ dollarInputValue: value }),
+    setInputDollars: inputDollars => set({ inputDollars }),
     updateAllEventsUpdatedAt: time => set({ allEventsUpdatedAt: time }),
     updateAllEvents: eventList => {
       set(state => {
@@ -53,6 +54,19 @@ export const initializeStore = (initState: State) => {
       })
 
       get().updateAllEventsUpdatedAt(new Date().getTime())
+    },
+    updateTableData: () => {
+      set(state => {
+        if (state.inputDollars === '') {
+          return { tableData: state.allEvents }
+        } else {
+          const cents = parseFloat(state.inputDollars) * 100
+          const tableData = state.allEvents.filter(
+            event => event.price === cents
+          )
+          return { tableData: tableData }
+        }
+      })
     }
   }))
 }

@@ -23,15 +23,15 @@ const Spacer = styled.span`
 `
 
 const Forms: React.FC = () => {
-  const dollarInputValue = useAppStore(state => state.dollarInputValue)
-  const setDollarInputValue = useAppStore(state => state.setDollarInputValue)
+  const inputDollars = useAppStore(state => state.inputDollars)
+  const setInputDollars = useAppStore(state => state.setInputDollars)
 
   return (
     <Container>
       <Title>Order Events</Title>
       <FormGroup>
         <Spacer />
-        <InputNumber value={dollarInputValue} onChange={setDollarInputValue} />
+        <InputNumber value={inputDollars} onChange={setInputDollars} />
       </FormGroup>
     </Container>
   )
