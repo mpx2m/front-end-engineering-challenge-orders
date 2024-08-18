@@ -17,7 +17,6 @@ export interface Actions {
   setTransport: (transport: string) => void
   setInputDollars: (inputDollars: string) => void
   setSelectedEvent: (selectedEvent: string) => void
-  updateAllEventsUpdatedAt: (time: number) => void
   updateAllEvents: (eventList: OrderEvent[]) => void
   updateTableData: () => void
 }
@@ -44,11 +43,11 @@ export const initializeStore = (initState: State) => {
     setTransport: transport => set({ transport }),
     setInputDollars: inputDollars => set({ inputDollars }),
     setSelectedEvent: selectedEvent => set({ selectedEvent }),
-    updateAllEventsUpdatedAt: time => set({ allEventsUpdatedAt: time }),
     updateAllEvents: eventList => {
       set(state => {
         const allEvents = [...state.allEvents]
         const eventOptions = [...state.eventOptions]
+        const allEventsUpdatedAt = new Date().getTime()
 
         eventList.forEach(event => {
           const index = allEvents.findIndex(({ id }) => id === event.id)
@@ -64,13 +63,15 @@ export const initializeStore = (initState: State) => {
         })
 
         if (eventOptions.length !== state.eventOptions.length) {
-          return { allEvents, eventOptions }
+          return {
+            allEvents,
+            eventOptions,
+            allEventsUpdatedAt
+          }
         }
 
-        return { allEvents }
+        return { allEvents, allEventsUpdatedAt }
       })
-
-      get().updateAllEventsUpdatedAt(new Date().getTime())
     },
     updateTableData: () => {
       set(state => {
