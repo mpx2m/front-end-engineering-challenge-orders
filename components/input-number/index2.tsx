@@ -52,21 +52,15 @@ interface InputNumberProps {
 
 const InputNumber: React.FC<InputNumberProps> = ({ value, onChange }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.valueAsNumber
-    const formattedValue = parseFloat(inputValue.toFixed(2))
+    const inputValue = e.target.value
+    console.log('inputValue', inputValue, typeof inputValue)
 
-    console.log(
-      inputValue,
-      typeof inputValue,
-      formattedValue,
-      typeof formattedValue
-    )
-
-    if (!isNaN(formattedValue)) {
+    const regex = /^\d*\.?\d{0,2}$/
+    if (regex.test(inputValue)) {
+      onChange(inputValue)
+    } else {
       onChange('')
     }
-
-    onChange(formattedValue + '')
   }
 
   return (
@@ -76,7 +70,6 @@ const InputNumber: React.FC<InputNumberProps> = ({ value, onChange }) => {
         value={value}
         onChange={handleChange}
         placeholder="0.00"
-        step="0.01"
         min={0}
       />
       <CurrencySymbol>$</CurrencySymbol>
