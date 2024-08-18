@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import { theme, border, textColor, bg } from '@/components/theme'
+import { theme, border, textColor, bg, boxShadow } from '@/components/theme'
 
 const Container = styled.div`
   display: inline-block;
@@ -14,20 +14,15 @@ const SelectButton = styled.div<{ $isOpen: boolean }>`
   justify-content: space-between;
   padding: 8px;
   border-radius: 8px;
-  border: 1px solid ${border.color2};
+  border: ${({ $isOpen }) =>
+    $isOpen ? `2px solid ${theme.hover}` : `1px solid ${border.color2}`};
   cursor: pointer;
   font-size: 16px;
-  color: #333;
   position: relative;
 
   &:hover {
     background-color: ${({ $isOpen }) => ($isOpen ? 'transparent' : bg.color2)};
   }
-
-  border: ${({ $isOpen }) =>
-    $isOpen ? `2px solid ${theme.hover}` : `1px solid  ${border.color2}`};
-
-  /* background-color: ${({ $isOpen }) => ($isOpen ? 'black' : 'gray')}; */
 `
 
 const OptionsContainer = styled.div<{ $isOpen: boolean }>`
@@ -37,7 +32,7 @@ const OptionsContainer = styled.div<{ $isOpen: boolean }>`
   width: 100%;
   border-radius: 4px;
   background-color: ${bg.white};
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px ${boxShadow.shadow1};
   max-height: 200px;
   overflow-y: auto;
   display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
@@ -45,19 +40,17 @@ const OptionsContainer = styled.div<{ $isOpen: boolean }>`
 `
 
 const Option = styled.div<{ $isSelected: boolean }>`
-  padding: 8px;
+  padding: 10px;
   cursor: pointer;
   font-weight: ${({ $isSelected }) => ($isSelected ? '500' : 'normal')};
   background-color: ${({ $isSelected }) =>
     $isSelected ? theme.highlight2 : 'transparent'};
-  text-align: left; /* Ensure the text is left-aligned */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  text-align: left;
+  transition: background-color 0.3s ease;
 
   &:hover {
     background-color: ${({ $isSelected }) =>
-      $isSelected
-        ? theme.highlight2
-        : '#f5f5f5'}; /* Hover color for selected and non-selected items */
+      $isSelected ? theme.highlight2 : theme.primary2};
   }
 `
 
@@ -67,30 +60,31 @@ const Placeholder = styled.span`
 
 const Arrow = styled.span<{ $isVisible: boolean }>`
   font-size: 12px;
+  font-weight: 500;
   color: ${textColor.color2};
   visibility: ${({ $isVisible }) => ($isVisible ? 'visible' : 'hidden')};
 `
 
 const ClearButton = styled.span`
   font-size: 14px;
-  color: #999;
+  font-weight: 900;
+  color: ${textColor.color2};
   cursor: pointer;
   position: absolute;
   right: 4px;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px; /* Set a fixed width */
-  height: 20px; /* Set a fixed height */
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%; /* Make it circular */
-  background-color: transparent; /* Default background color */
-  transition: background-color 0.3s ease; /* Smooth transition for background color change */
-
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
   &:hover {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.2); /* Darker background on hover */
+    color: ${textColor.white};
+    background-color: ${textColor.gray2};
   }
 `
 
@@ -124,6 +118,7 @@ const Select: React.FC<SelectProps> = ({
   const handleClear = (event: React.MouseEvent) => {
     event.stopPropagation()
     onChange('')
+    setIsOpen(false) // Ensure the dropdown closes when clearing the value
     if (onClear) {
       onClear()
     }

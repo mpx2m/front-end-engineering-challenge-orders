@@ -1,5 +1,6 @@
 export const theme = {
   primary: 'rgb(47, 63, 58)',
+  primary2: 'rgb(47, 63, 58,0.1)',
   hover: 'rgb(34, 45, 38)',
   highlight: 'rgb(210, 111, 80)',
   highlight2: 'rgba(210, 111, 80,0.3)'
@@ -16,6 +17,10 @@ export const bg = {
 export const border = {
   color1: 'rgb(226, 226, 213)',
   color2: 'rgb(186, 184, 175)'
+}
+
+export const boxShadow = {
+  shadow1: 'rgba(0, 0, 0, 0.15)'
 }
 
 export const textColor = {
